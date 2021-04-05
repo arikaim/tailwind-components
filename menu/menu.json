@@ -1,0 +1,5 @@
+{
+    "css": {
+        "item": "px-4 py-1 md:p-2 lg:px-4 hover:text-red-500 transition duration-700 ease-in-out"
+    }
+}

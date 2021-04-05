@@ -1,0 +1,12 @@
+{% set title_class = title_class|default('text-xs uppercase text-gray-400 font-medium mb-6') %}
+{% set class = class|default('p-5 w-1/2 sm:w-4/12 md:w-3/12') %}
+<div class="{{ class }}"> 
+    <div class="{{ title_class }}">
+        {{ title|default(default.title) }}
+    </div>
+    {% for link in links %}
+        <a href="{{ url(link.url)|default('#') }}" class="{{ link_class|default(default.link.class) }}">
+            {{ link.title|default(default.link.title) }}
+        </a>
+    {% endfor %}   
+</div>

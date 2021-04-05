@@ -1,0 +1,20 @@
+<div class="{{ class|default('max-w-sm px-6 pb-6 border-2 tracking-wide rounded shadow-lg') }} 
+    {{ size }}
+    {{ color|default('bg-white border-gray-300') }} card">
+    {% if title is not empty %}
+    <div class="flex items-center card-header {{ header.class|default('mb-4') }}">   
+        {% if header.icon is not empty %}
+            {{  component(header.icon.name,{ 
+                    size: header.icon.size|default('h-6 w-6'), 
+                    width: header.icon.width|default(2), 
+                    color: header.icon.color 
+                },'svg') 
+            }}
+        {% endif %}
+        <div class="{{ title.class|default('p-2') }}">{{ title.text }}</div>
+    </div>
+    {% endif %}
+    <div class="card-content {{ content_class|default('p-1') }}">
+        {{ content }}
+    </div>
+</div>
