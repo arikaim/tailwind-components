@@ -1,0 +1,13 @@
+{
+    "title": "Html components",
+    "package-type": "components",
+    "name": "tailwind",
+    "version": "1.0.0",
+    "description": "Arikaim CMS html components library created with Tailwind CSS.",
+    "repository": "https://github.com/arikaim/tailwind-components.git",
+    "require": {
+        "library": [     
+            "jquery"      
+        ]
+    }
+}
