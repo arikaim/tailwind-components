@@ -1,0 +1,39 @@
+{% set selected = selected|default(getCurrentLanguage()) %}
+{% set selected = (selected is string) ? createModel('Language').findByColumn(selected,'code') : selected %}
+{% set data_type = data_type|default('code') %}
+
+{% set show_title = show_title|default(false) %}
+{% set show_native_title = show_title|default(false) %}
+{% set items = createModel('Language').where('status',1).orderBy('position').get() %}
+{% set link = {
+    class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+} %}
+
+<div class="language-dropdown relative inline-block text-left"> 
+    <btn type="button" class="dropdown-button cursor-pointer p-2 flex justify-center rounded-md self-center" 
+        id="language-button" aria-expanded="true" aria-haspopup="true">
+        <i class="ui flag {{ selected.country_code|lower }}"></i>
+        {{ component('icons~chevron.down',{ class: 'self-center cursor-pointer', size: 'h-4 w-4' },'svg') }}       
+    </btn>
+    <div id="language-menu" 
+        class="z-50 origin-top-right absolute right-0 w-56 h-full hidden {{ class }}" 
+        role="menu" 
+        aria-orientation="vertical" 
+        aria-labelledby="options-menu"
+        id="{{ id|default('language_dropdown') }}">
+        <input name="{{ name }}" type="hidden" value="{{ selected.code }}">
+        <div class="py-1 bg-white rounded-lg shadow-lg" role="none">
+            {% for item in items %}
+            <div data-value="{{ item[data_type] }}" class="language-item cursor-pointer {{ link.class }}" role="menuitem">
+                <i class="flag {{ item.country_code|lower }}"></i>
+                {% set bold_style = (item.code == selected.code) ? 'font-bold' : '' %}             
+                {% if show_native_title == true %}
+                    <span class="{{ bold_style }}">{{ item.native_title }}</span>
+                {% else %}
+                    <span class="{{ bold_style }}">{{ item.title }}</span>
+                {% endif %}
+            </div>
+            {% endfor %}    
+        </div>
+    </div>
+</div>
