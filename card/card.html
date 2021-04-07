@@ -1,6 +1,7 @@
-<div class="{{ class|default('max-w-sm px-6 pb-6 border-2 tracking-wide rounded shadow-lg') }} 
+<div class="card {{ class|default('px-6 pb-6 tracking-wide') }} 
     {{ size }}
-    {{ color|default('bg-white border-gray-300') }} card">
+    {{ border|default('border-gray-300 border-2 rounded shadow-lg') }}
+    {{ color|default('bg-white') }}">
     {% if title is not empty %}
     <div class="flex items-center card-header {{ header.class|default('mb-4') }}">   
         {% if header.icon is not empty %}

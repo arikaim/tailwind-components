@@ -2,7 +2,7 @@
 
 arikaim.component.onLoaded(function() {  
     arikaim.ui.button('#language-button',function(element) {
-        $('#language-menu').toggle();
+        $('#language-menu').fadeToggle(500);
     });
     arikaim.ui.button('.language-item',function(element) {
         var language = $(element).attr('data-value');
