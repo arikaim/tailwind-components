@@ -14,7 +14,7 @@
     <div class="{{ message.class|default('h-20 mt-4') }}">
         <div class="ui errors error hidden message {{ message.error|default('p-2 border border-solid border-red-400 rounded-lg') }}">        
         </div> 
-        <div class="ui success hidden message {{ message.success|default('p-2 border border-solid border-green-400 rounded-lg') }}" id="message">        
+        <div class="ui success hidden {{ message.success|default('p-2 border border-solid border-green-400 rounded-lg') }}" id="message">        
         </div>  
     </div>   
 </div>
