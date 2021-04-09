@@ -1,0 +1,15 @@
+<btn class="flex flex-row items-center full-screen {{ class|default('p-2') }}" iframe-id="{{ element_id }}" {{ hint|attr('title') }}>  
+    {% if icon is not empty %}
+        {{  component(icon.name|default('icons~desktop'),{ 
+                color: icon.color|default('text-green-500'), 
+                size: icon.size|default('h-7 w-7'), 
+                class: icon.class
+            },'svg') 
+        }}  
+    {% endif %}
+    {% if title is not empty %}
+    <div>
+        {{ title }}
+    </div>
+    {% endif %}
+</btn>
