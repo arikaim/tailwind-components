@@ -3,7 +3,9 @@
     {% set interval = from_year ~ ' - ' ~ currentYear() %}
 {% endif %}
 <div class="flex flex-row {{ border }} {{ color|default('text-gray-400 text-sm') }}">
+    {% if title is not empty %}
     <div class="{{ title_class|default('px-2') }}">       
         {{ title|renderText({ interval: interval }) }}             
     </div>
+    {% endif %}
 </div>

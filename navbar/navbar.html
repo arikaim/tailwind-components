@@ -1,6 +1,6 @@
 <nav class="{{ class|default('container mx-auto p-4') }} {{ color|default('bg-white shadow') }}" role="navigation">   
     {% if button is not empty %}    
-    <btn class="cursor-pointer home-button px-3 py-2 {{ button.class|default('md:hidden') }}" type="button">         
+    <btn class="cursor-pointer home-button {{ button.class|default('px-3 py-2 md:hidden') }}" type="button">         
         {% if button.icon is not empty %}
         {{  component(button.icon.name,{ 
                 size: button.icon.size|default('h-6 w-6'), 

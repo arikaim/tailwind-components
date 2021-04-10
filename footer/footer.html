@@ -1,5 +1,5 @@
 <footer class="footer {{ color|default('text-gray-800 bg-gray-800') }} {{ class|default('sm:mt-10') }}">
-    <div class="flex sm:flex-grow xs:flex-col md:flex-col lg:flex-row flex-wrap {{ content_class }}">
+    <div class="flex sm:flex-col xs:flex-col lg:flex-row flex-wrap {{ content_class|default('md:flex-col') }}">
         {{ content }}        
     </div>    
 </footer>

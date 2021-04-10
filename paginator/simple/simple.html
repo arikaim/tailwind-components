@@ -1,0 +1,37 @@
+{% set paginator = getPaginator(namespace) %} 
+{% set show_current_page = show_current_page|default(true) %}
+{% if paginator.last_page != -1 %}
+    {% set show_next_button = (paginator.current_page < paginator.last_page) ? '' : 'invisible' %}
+{% endif %}
+{% set show_prev_button = (paginator.current_page == 1) ? 'invisible' : '' %}
+
+{% if paginator.last_page > 1 %}
+{% set icon = icon|default({
+    color: 'text-gray-300',
+    size: 'h-8 w-8',
+    class: 'cursor-pointer hover:text-red-500 transition duration-1000 ease-in-out'
+}) %}
+<div 
+    class="flex flex-row flex-grow items-stretch paginator {{ class }}" 
+    last-page="{{ paginator.last_page }}" 
+    component="{{ rows_component }}" 
+    component-params="{{ rows_component_params }}"
+    namespace="{{ namespace }}"
+    init="{{ init|default(false) }}"
+    rows-selector="{{ rows_selector }}"
+    current-page="{{ paginator.current_page }}">
+    <div class="{{ link_class }} page-link prev-page {{ show_prev_button }}" page="prev">       
+        {{ component(left_icon|default('icons~chevron.left'),icon,'svg') }} 
+    </div>  
+    {% if show_current_page == true %} 
+        <div
+            class="self-center {{ current_page_class|default('text-lg font-bold') }}" 
+            page="{{ paginator.current_page }}" id="current_page">       
+            {{ paginator.current_page }}      
+        </div>  
+    {% endif %}
+    <div class="{{ link_class }} page-link next-page {{ show_next_button }}" page="next">
+        {{ component(right_icon|default('icons~chevron.right'),icon,'svg') }}            
+    </div>   
+</div>
+{% endif %}
