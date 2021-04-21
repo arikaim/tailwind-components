@@ -1,0 +1,7 @@
+{% set text = text|default('text-xs font-medium leading-6 text-center text-white uppercase') %}
+{% set border = border|default('rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none') %}
+<btn 
+    class="inline-block {{ class|default('px-6 py-2') }} transition {{ color|default('bg-blue-700') }} 
+    {{ text }} {{ border }}">
+    {{ title|default('Primary') }}
+</btn>

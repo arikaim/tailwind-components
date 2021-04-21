@@ -2,13 +2,13 @@
     {% if button is not empty %}    
     <btn class="cursor-pointer home-button {{ button.class|default('px-3 py-2 md:hidden') }}" type="button">         
         {% if button.icon is not empty %}
-        {{  component(button.icon.name,{ 
-                size: button.icon.size|default('h-6 w-6'), 
-                width: button.icon.width|default(2), 
-                color: button.icon.color, 
-                class: button.icon.class 
-            },'svg') 
-        }}
+            {{  component(button.icon.name,{ 
+                    size: button.icon.size|default('h-6 w-6'), 
+                    width: button.icon.width|default(2), 
+                    color: button.icon.color, 
+                    class: button.icon.class 
+                },'svg') 
+            }}
         {% endif %}        
     </btn>   
     {% endif %}       
