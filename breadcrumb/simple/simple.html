@@ -1,0 +1,22 @@
+{% set path = path|default('') %}
+{% set separator = separator|default(DIRECTORY_SEPARATOR) %}
+{% set items = path|split(separator) %}
+
+<div class="flex flex-row items-center {{ class }}" id="{{ id|default('breadcrumb') }}">             
+    {% if icon is not empty %}
+        <div class="p-2">      
+            {{ component(icon.name,{ size: icon.size|default('h-8 w-8'), width: 2, color: icon.color },'svg') }}   
+        </div>          
+    {% endif %}             
+    <div class="{{ separator_class|default('p-2') }}">{{ separator }}</div>      
+    <div class="flex flex-row items-start flex-grow breadcrumb-items">
+    {% for item in items %}         
+        {% if item is not empty %}
+            <div class="{{ item_class|default('p-2') }}">
+                {{ item }}
+            </div>           
+            <div class="{{ separator_class|default('p-2') }}">{{ separator }}</div>
+        {% endif %}          
+    {% endfor %} 
+    </div>               
+</div>

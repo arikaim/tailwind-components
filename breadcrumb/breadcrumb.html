@@ -12,15 +12,15 @@
     {% if icon is not empty %}
         {% if hide_links != true %}
             <a class="p-2 breadcrumb-item {{ link_class }}" path="{{ home_path }}">
-                {{ component(icon.name,{ class: icon.class, size: 'h-8 w-8', width: 2, color: icon.color },'svg') }}   
+                {{ component(icon.name,{ class: icon.class, icon.size|default('h-8 w-8'), width: 2, color: icon.color },'svg') }}   
             </a>
         {% else %}
             <div class="p-2">      
-                {{ component(icon.name,{ size: 'h-8 w-8', width: 2, color: icon.color },'svg') }}   
+                {{ component(icon.name,{ size: icon.size|default('h-8 w-8'), width: 2, color: icon.color },'svg') }}   
             </div>   
         {% endif %}
     {% endif %}             
-    <div class="p-2">{{ separator }}</div>      
+    <div class="{{ separator_class|default('p-2') }}">{{ separator }}</div>      
     <div class="flex flex-row items-start flex-grow breadcrumb-items">
     {% for item in items %}         
         {% if item is not empty %}
@@ -30,11 +30,11 @@
                     {{ item }}               
                 </a>
             {% else %}
-                <div class="p-2 breadcrumb-item">
+                <div class="breadcrumb-item {{ item_class|default('p-2') }}">
                     {{ item }}
                 </div>
             {% endif %}
-            <div class="p-2">{{ separator }}</div>
+            <div class="{{ separator_class|default('p-2') }}">{{ separator }}</div>
         {% endif %}          
     {% endfor %} 
     </div>               
