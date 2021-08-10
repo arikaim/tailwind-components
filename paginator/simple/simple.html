@@ -12,7 +12,7 @@
     class: 'cursor-pointer hover:text-red-500 transition duration-1000 ease-in-out'
 }) %}
 <div 
-    class="flex flex-row flex-grow items-stretch paginator {{ class }}" 
+    class="flex flex-row items-stretch paginator {{ class }}" 
     last-page="{{ paginator.last_page }}" 
     component="{{ rows_component }}" 
     component-params="{{ rows_component_params }}"
@@ -24,7 +24,7 @@
         {{ component(left_icon|default('icons~chevron.left'),icon,'svg') }} 
     </div>  
     {% if show_current_page == true %} 
-        <div
+        <div 
             class="self-center {{ current_page_class|default('text-lg font-bold') }}" 
             page="{{ paginator.current_page }}" id="current_page">       
             {{ paginator.current_page }}      
