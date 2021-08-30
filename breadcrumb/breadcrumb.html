@@ -12,7 +12,7 @@
     {% if icon is not empty %}
         {% if hide_links != true %}
             <a class="p-2 breadcrumb-item {{ link_class }}" path="{{ home_path }}">
-                {{ component(icon.name,{ class: icon.class, icon.size|default('h-8 w-8'), width: 2, color: icon.color },'svg') }}   
+                {{ component(icon.name,{ class: icon.class, size: icon.size|default('h-8 w-8'), width: 2, color: icon.color },'svg') }}   
             </a>
         {% else %}
             <div class="p-2">      
