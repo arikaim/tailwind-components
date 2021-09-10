@@ -2,10 +2,9 @@
 {% if from_year is not empty and from_year < current_year %}
     {% set interval = from_year ~ ' - ' ~ currentYear() %}
 {% endif %}
-<div class="flex flex-row {{ border }} {{ color|default('text-gray-400 text-sm') }}">
-    {% if title is not empty %}
+<div class="flex flex-row {{ class }} {{ border }} {{ color|default('text-gray-400 text-sm') }}">
     <div class="{{ title_class|default('px-2') }}">       
-        {{ title|renderText({ interval: interval }) }}             
+        {{ title }}
+        <span class="px-1 {{ interval_class }}">{{ interval }}</span>           
     </div>
-    {% endif %}
 </div>
