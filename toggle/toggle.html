@@ -1,0 +1,11 @@
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-500 ease-in">
+    <input 
+        type="checkbox" 
+        name="{{ name|default('toggle') }}" {{ id|attr('id') }} 
+        class="toggle absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+    <label 
+        for="{{ name|default('toggle') }}" 
+        class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer">        
+    </label>
+</div>
+<label for="{{ name|default('toggle') }}" class="text-xs text-gray-700">{{ label }}</label>
