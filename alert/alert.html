@@ -1,4 +1,4 @@
-<alert class="alert {{ (invisible != false) ? 'invisible' : '' }} flex flex-row items-center 
+<alert class="alert {{ (invisible != false) ? 'hidden' : '' }} flex flex-row items-center 
         {{ position }}
         {{ size|default('w-1/2') }}  
         {{ class|default('shadow-lg p-5 rounded ') }}
@@ -7,7 +7,7 @@
     {{ fadeIn|attr('fade-in') }}
     {{ fadeOut|attr('fade-out') }}
     id="{{ id|default('alert') }}">
-    <div class="alert-icon flex items-center h-10 w-10 flex-shrink-0 ">
+    <div class="alert-icon flex items-center h-10 w-10 flex-shrink-0">
         {{  component(icon.name|default('icons~check'),{ 
                 size: icon.size|default('w-10 h-10'), 
                 color: icon.color|default('text-green-500'), 
@@ -15,11 +15,11 @@
             },'svg')
         }}       
     </div>
-    <div class="alert-content ml-4 flex-grow">
-        <div class="alert-title font-semibold text-lg text-green-800">
+    <div class="alert-content flex-grow {{ content.class|default('ml-4') }}">
+        <div class="alert-title {{ content.title|default('font-bold text-lg') }}">
             {{ title }}
         </div>
-        <div class="alert-description text-md">
+        <div class="alert-description {{ content.description|default('text-md ') }}">
             {{ description }}
         </div>
     </div>

@@ -36,6 +36,7 @@ function Alert(selector, options) {
 
         $(selector).hide();
         $(selector).removeClass('invisible');
+        $(selector).removeClass('hidden');
         $(selector).fadeIn(options.fadeIn);
         if (options.hideAfter > 0) {
             $(selector).delay(options.hideAfter).fadeOut(options.fadeOut);
