@@ -1,0 +1,36 @@
+<alert class="alert {{ (invisible != false) ? 'invisible' : '' }} flex flex-row items-center 
+        {{ position }}
+        {{ size|default('w-1/2') }}  
+        {{ class|default('shadow-lg p-5 rounded ') }}
+        {{ border|default('border border-b-2 border-solid border-green-400') }}"       
+    {{ hideAfter|attr('hide-after') }}
+    {{ fadeIn|attr('fade-in') }}
+    {{ fadeOut|attr('fade-out') }}
+    id="{{ id|default('alert') }}">
+    <div class="alert-icon flex items-center h-10 w-10 flex-shrink-0 ">
+        {{  component(icon.name|default('icons~check'),{ 
+                size: icon.size|default('w-10 h-10'), 
+                color: icon.color|default('text-green-500'), 
+                class: icon.class 
+            },'svg')
+        }}       
+    </div>
+    <div class="alert-content ml-4 flex-grow">
+        <div class="alert-title font-semibold text-lg text-green-800">
+            {{ title }}
+        </div>
+        <div class="alert-description text-md">
+            {{ description }}
+        </div>
+    </div>
+    {% if hideClose != true %}
+    <div class="alert-close-button {{ close.hover }} {{ close.button|default('pr-4 cursor-pointer') }}">
+        {{  component(close.name|default('icons~close'),{ 
+                size: close.size|default('w-7 h-7'), 
+                color: close.color|default('text-red-500'), 
+                class: close.class 
+            },'svg')
+        }}
+    </div>
+    {% endif %}
+</alert>
