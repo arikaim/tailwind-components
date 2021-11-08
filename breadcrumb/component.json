@@ -1,7 +1,7 @@
 {
     "include": {
         "js": [            
-            "components:breadcrumb"
+            "semantic~breadcrumb"
         ] 
     }
 }
