@@ -1,0 +1,43 @@
+<div class="search-dropdown relative inline-block {{ class }}"> 
+    <btn 
+        type="button" 
+        class="search-dropdown-button cursor-pointer {{ button.class|default('flex self-center px-2') }}" 
+        id="search_dropdown_button" {{ button.tooltip|attr('title') }}>
+        {% if button.icon is not empty %}
+            {{  component(button.icon.name,{ 
+                    width: button.icon.width, 
+                    color: button.icon.color,
+                    class: button.icon.class, 
+                    size: button.icon.size|default('h-7 w-7') 
+                },'svg') 
+            }}       
+        {% endif %}
+        {{ button.title }}
+    </btn>
+    <div class="hidden z-50 absolute {{ panel.class|default('right-0 mt-2') }}" role="menu" id="search_panel">       
+        <div class="{{ panel.color|default('bg-gray-800 rounded-lg shadow-lg') }} {{ panel.size|default('h-full w-64 p-4') }}">         
+            <div class="flex flex-row items-center input-panel 
+                {{ input.size|default('h-full w-full') }} 
+                {{ input.color|default('rounded-lg shadow bg-gray-100') }}">
+                <input                
+                    type="text" 
+                    field-id="{{ input.id|default('search_field') }}"
+                    placeholder="{{ input.placeholder }}" 
+                    id="{{ input.id|default('search_field') }}" 
+                    class="search-field inline-block w-full 
+                    {{ input.class|default('rounded-l-lg p-3 text-medium bg-gray-100 text-gray-800') }} 
+                    {{ input.focus|default('focus:outline-none focus:ring-2 focus:border-blue-300') }} 
+                    {{ input.hover|default('hover:text-gray-900') }}">  
+                <btn class="search-button cursor-pointer 
+                    {{ search.button|default('p-2 bg-gray-800 bg-opacity-90 rounded-r-lg') }}" 
+                    field-id="{{ input.id|default('search_field') }}"
+                    {{ search.button.tooltip|attr('title') }}>
+                    {% if search.button.icon.name is npt empty %}         
+                        {{  component(search.button.icon.name,search.button.icon|default({}),'svg') }}  
+                    {% endif %}
+                    {{ search.button.title }}
+                </btn>    
+            </div> 
+        </div>       
+    </div>     
+</div>

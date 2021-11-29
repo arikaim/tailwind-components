@@ -1,0 +1,22 @@
+<accordion class="accordion flex flex-col justify-center items-start {{ class }}">   
+    <h2 class="{{ title_class|default('text-xl font-bold p-2') }}">
+        {{ title }}
+    </h2>
+    <ul class="flex flex-col flex-grow {{ content_class|default('w-full') }}" style="border:1px solid red">
+        {% for item in items %}
+        <li class="{{ item.space|default('my-2') }} {{ item.color|default('bg-white shadow-lg') }}">
+            <div class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer">
+                <h4>
+                    {{ item.title }}
+                </h4>
+                {{ component('icons~chevron.down',{ size: 'h-6 w-6' }) }}
+            </div>
+            <div class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all">
+                <p class="p-3 text-gray-900">
+                    {{ item.content }}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>   
+</accordion>

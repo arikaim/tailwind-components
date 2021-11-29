@@ -1,0 +1,30 @@
+<div class="flex flex-col {{ class }}">
+    {% if label.content is not empty %}
+    <label 
+        for="{{ input.name }}" 
+        class="{{ label.space|default('mb-1') }} {{ label.class|default('text-xs sm:text-sm tracking-wide text-gray-800') }}">
+        {{ label.content }}
+    </label>
+    {% endif %}
+    <div class="relative">
+        <div class="absolute flex border border-transparent left-0 top-0 h-full w-10">
+            {% if icon is not empty %}
+                {{  component(icon.name,{ 
+                        size: icon.size|default('h-6 w-6'), 
+                        width: icon.width|default(2), 
+                        color: icon.color, 
+                        class: icon.class  
+                    },'svg') 
+                }}
+            {% endif %}
+        </div>
+        <input name="{{ input.name }}" {{ input.id|attr('id') }}
+               type="{{ input.type|default('text') }}"
+               placeholder="{{ input.placeholder }}"
+               value="{{ input.value }}"
+               class="relative w-full {{ input.ficus|default('focus:border-indigo-400 focus:outline-none') }} 
+               {{ input.space|default('py-2 pr-2 pl-12') }}
+               {{ input.border|default('border rounded') }}
+               {{ input.text|default('text-sm sm:text-base placeholder-gray-400') }}">
+    </div>
+</div>
