@@ -1,31 +1,46 @@
-/**
- *  Arikaim
- *  @copyright  Copyright (c) Konstantin Atanasov <info@arikaim.com>
- *  @license    http://www.arikaim.com/license
- *  http://www.arikaim.com
- * 
- *  Accordion component
-*/
 'use strict';
 
-function Accordion(selector, options) {
-    var self = this;
-
-    this.selector = (isEmpty(selector) == true) ? '#accordion' : selector;
-    this.options = options;
-
-    this.init = function() {
-        $('.alert-close-button').off();
-        $('.alert-close-button').on('click',function() {           
-            var alert = $(this).parent();
-            self.hide(alert);
-        });       
+arikaim.component.onLoaded(function(component) {
+    component.getItems = function() {
+        return $(component.getElement()).find('item');      
     };
-}
 
-Accordion.init = function(selector, options) {
-    var accordion = new Accordion(selector,options);
-    accordion.init();  
+    component.getIcons = function() {
+        return component.getItems().children('.accordion-item-title').children('svg');
+    };
 
-    return accordion;  
-};
+    component.collapseItem = function(item) {
+        $(item).find('svg').removeClass(this.get('icon-rotate')); 
+        $(item).next('.accordion-item-content').css('max-height','0px');  
+        $(item).removeAttr('open');    
+    };
+
+    component.expandItem = function(item) {           
+        if (isEmpty($(item).attr('disabled')) == false) {
+            return false;
+        }
+        
+        if (isEmpty($(item).attr('open')) == false) {               
+            this.collapseItem(item);      
+            return false;
+        };
+
+        this.getItems().children('.accordion-item-title').removeAttr('open');
+        this.getItems().children('.accordion-item-content').css('max-height','0px');
+        this.getIcons().removeClass(this.get('icon-rotate'));      
+      
+        var height = $(item).next('.accordion-item-content').prop('scrollHeight');
+        $(item).next('.accordion-item-content').css('max-height',height + 32 + 'px');
+        $(item).find('svg').addClass(this.get('icon-rotate'));
+        $(item).attr('open',true);
+    };
+
+    component.init = function() {
+        var items = component.getItems().children('.accordion-item-title');
+        $(items).on('click',function() {                    
+            component.expandItem(this);
+        });
+    };
+
+    component.init();
+});

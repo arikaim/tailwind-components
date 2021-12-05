@@ -1,11 +1,10 @@
 'use strict';
 
-arikaim.component.onLoaded(function() {
-    $('.full-screen').on('click',function() {
-        var targetId = $(this).attr('iframe-id');
-        var el = $('#' + targetId);
-        var doc = (isEmpty(el[0]) == true) ? document : el[0];
-         
+arikaim.component.onLoaded(function(component) {
+    component.on('click',function() {
+        var targetId = component.get('iframe-id');
+        var doc = (isEmpty(targetId) == false) ? $('#' + targetId)[0] : document;
+     
         var fullScreen = doc.requestFullscreen
         || doc.webkitRequestFullScreen
         || doc.mozRequestFullScreen

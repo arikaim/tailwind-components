@@ -1,4 +1,9 @@
-<btn class="flex flex-row items-center full-screen {{ class|default('p-2') }}" iframe-id="{{ element_id }}" {{ hint|attr('title') }}>  
+<btn 
+    id="{{ component_id }}"
+    class="flex flex-row items-center full-screen 
+    {{ class|default('p-2') }}" 
+    iframe-id="{{ element_id }}" 
+    {{ hint|attr('title') }}>  
     {% if icon is not empty %}
         {{  component(icon.name|default('icons~desktop'),{ 
                 color: icon.color|default('text-green-500'), 

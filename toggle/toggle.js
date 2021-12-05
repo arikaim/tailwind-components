@@ -42,6 +42,5 @@ arikaim.component.onLoaded(function(component) {
     
     component.on('click',function() {
         component.toggle();
-    });
-    
+    });  
 });
