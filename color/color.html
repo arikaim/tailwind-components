@@ -1,0 +1,36 @@
+{% set selected = selected|default('red-800') %}
+<colorPicker
+    id="{{ component_id }}"
+    selected="{{ selected }}"
+    background="{{ colors[selected].bg }}"
+    dateType="{{ data_type }}"
+    class="color-picker relative inline-flex flex-col items-start {{ class }}">
+    <selected 
+        class="inline-block h-10 w-10 color-pick-button cursor-pointer transition-colors duration-700  
+        {{ colors[selected].bg }} 
+        {{ selected_class }}
+        {{ selected_hover|default('hover:border-green-500 hover:shadow-2xl') }}
+        {{ selected_border|default('rounded-xl border-2 border-gray-300 border-solid') }}">
+        <input name="{{ field_name|default('color') }}" type="hidden" value="{{ selected }}">                             
+    </selected>
+    <menu 
+        class="hidden z-50 mt-12 top-0 absolute left-0 tailwind-grid grid-cols-10 gap-2 place-content-center pt-4
+        {{ size|default('p-2 w-96') }} 
+        {{ menu_border|default('rounded-xl border border-gray-200 border-solid shadow-md') }}
+        {{ menu_class }}">                     
+        {% for key, item in colors %}
+            {% set value = (data_type is empty) ? key : item[data_type] %}            
+            <color 
+                title="{{ item.title }}"
+                color-name="{{ key }}"           
+                value="{{ value }}" 
+                bg-color="{{ item.bg }}"               
+                selected-class="border-green-500"
+                class="{{ item.bg }} h-8 w-8 color-item cursor-pointer inline-block transition-colors duration-700
+                rounded-xl border-2 border-gray-300 border-solid
+                {{ item_color_class }}
+                {{ item_color_hover|default('hover:border-green-500 hover:shadow-2xl') }}">                             
+            </color>
+        {% endfor %}           
+    </menu>
+</colorPicker>
