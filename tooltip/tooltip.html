@@ -1,15 +1,13 @@
-Test
 <tooltip 
-    id="{{ component_id }}"    
-    class="tooltip -top-1 z-10 absolute inline-block opacity-100 duration-1000 transition    
+    id="{{ component_id }}"   
+    opacity="opacity-100" 
+    class="tooltip z-10 absolute -top-14 inline-block opacity-0 duration-1000 transition-opacity ease-in-out   
     {{ space|default('py-2 px-3') }} 
-    {{ color|default('bg-gray-900 shadow-sm rounded-lg dark:bg-gray-700') }}"> 
-    <div class="relative mx-2">
-        <div class="opacity-100 inline-block bottom-full {{ text|default('text-white text-sm font-medium') }}">
-            <span>Test{{ content }}</span>       
-            <svg class="absolute text-black h-8 w-full left-0 top-full" viewBox="0 0 255 255">
-                <polygon points="0,0 127.5,127.5 255,0"/>
-            </svg>
-        </div>   
-    </div>        
+    {{ color|default('bg-gray-900 shadow-sm rounded-lg dark:bg-gray-700') }}">       
+    <span class="relative block py-1 {{ text|default('text-white text-sm font-medium whitespace-nowrap') }}">
+        {{ content }}
+    </span>  
+    <svg class="absolute text-black h-3 w-full left-0 top-full" viewBox="0 0 255 255" xml:space="preserve">
+        <polygon class="fill-current" points="0,0 127.5,127.5 255,0"/>
+    </svg>
 </tooltip>
