@@ -1,7 +1,8 @@
 <tooltip 
     id="{{ component_id }}"   
     opacity="opacity-100" 
-    class="tooltip z-10 absolute -top-14 inline-block opacity-0 duration-1000 transition-opacity ease-in-out   
+    class="tooltip z-10 absolute inline-block opacity-0 duration-1000 transition-opacity ease-in-out   
+    {{ position|default('-top-14') }}
     {{ space|default('py-2 px-3') }} 
     {{ color|default('bg-gray-900 shadow-sm rounded-lg dark:bg-gray-700') }}">       
     <span class="relative block py-1 {{ text|default('text-white text-sm font-medium whitespace-nowrap') }}">

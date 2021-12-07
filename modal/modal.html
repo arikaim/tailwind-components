@@ -1,0 +1,32 @@
+<modal 
+    id="{{ component_id }}"     
+    class="modal fixed hidden top-0 left-0 w-screen h-screen z-100  
+    {{ color|default('bg-gray-700 bg-opacity-50') }}">
+    <div 
+        class="modal-container absolute inline-block overflow-y-auto bg-opacity-100 z-101
+        {{ position|default('left-0 top-1/2 right-0 m-auto') }}
+        {{ border|default('border border-gray-500 border-solid') }}
+        {{ color|default('bg-white rounded-lg shadow-lg') }}
+        {{ size|default('w-2/4') }}">
+        <header class="bg-white modal-header flex justify-between items-center {{ space|default('py-4 px-6') }}">				       
+            <h4 class="modal-title {{ title_class|default('text-2xl font-bold') }}">
+                {{ title }}
+            </h4>
+            {{  component(close_icon|default('icons~close'),{ 
+                    class: 'cursor-pointer modal-close transition-color duration-500 ease-in-out', 
+                    size: 'h-6 w-6', 
+                    color: 'text-gray-800 hover:text-red-500' 
+                },'svg') 
+            }}               
+        </header>
+        <content class="modal-content {{ space|default('py-4 px-6') }}">
+            {{ content }}
+        </content>
+        <footer class="modal-footer flex flex-row {{ footer_class|default('place-content-end') }} {{ space|default('py-4 px-6') }}">              
+            <button class="inline-block modal-close cursor-pointer transition-color duration-500 ease-in-out
+                {{ close_button|default('px-4 bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-800') }}">
+                {{ labels.close }}
+            </button>
+        </footer>	
+    </div>			
+</modal>
