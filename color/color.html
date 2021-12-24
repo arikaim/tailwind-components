@@ -16,6 +16,7 @@
     <menu 
         class="hidden z-50 mt-12 top-0 absolute left-0 tailwind-grid grid-cols-10 gap-2 place-content-center pt-4
         {{ size|default('p-2 w-96') }} 
+        {{ menu_color|default('bg-white') }}
         {{ menu_border|default('rounded-xl border border-gray-200 border-solid shadow-md') }}
         {{ menu_class }}">                     
         {% for key, item in colors %}

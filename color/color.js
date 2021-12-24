@@ -9,10 +9,12 @@ arikaim.component.onLoaded(function(component) {
     component.select = function(element) {
         var bgColor = $(element).attr('bg-color'); 
         var selected = component.get('background');
-    
+        var value = $(element).attr('value');
+
         $(this.getButton()).removeClass(selected).addClass(bgColor);
         component.set('background',bgColor);
-
+        component.set('selected',value);
+        
         $(component.getElement()).find('input').val();
         component.toggleMenu();
     };
