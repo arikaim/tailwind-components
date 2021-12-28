@@ -1,0 +1,22 @@
+{% set min = min|default(1) %}
+{% set step = step|default(1) %}
+{% set max = max|default(100) %}
+{% set value = (value > max) ? max : value|default(min) %}
+<div
+    id="{{ component_id }}"
+    min="{{ min }}"
+    max="{{ max }}"
+    step="{{ step }}"
+    value="{{ value }}"
+    completed="{{ (value >= max) ? 'true' : 'false' }}"
+    class="relative overflow-hidden progress {{ class }}
+    {{ height|default('h-2') }}   
+    {{ width|default('w-64') }}
+    {{ color|default('bg-gray-500 rounded-lg') }}">    
+    <div 
+        class="absolute w-0 progress-bar h-full 
+        {{ bar_class }}    
+        {{ bar_color|default('bg-green-500') }}" 
+        style="width: {{ value }}%;">       
+    </div>  
+</div>

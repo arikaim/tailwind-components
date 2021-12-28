@@ -1,94 +1,56 @@
-/**
- *  Arikaim
- *  @copyright  Copyright (c) Konstantin Atanasov <info@arikaim.com>
- *  @license    http://www.arikaim.com/license
- *  http://www.arikaim.com
- * 
- *  Alert component
-*/
 'use strict';
 
-function Alert(selector, options) {
-    var self = this;
-
-    this.selector = (isEmpty(selector) == true) ? '#alert' : selector;
-    this.options = options;
-
-    this.init = function() {
-        $('.alert-close-button').off();
-        $('.alert-close-button').on('click',function() {           
-            var alert = $(this).parent();
-            self.hide(alert);
-        });       
+arikaim.component.onLoaded(function(component) {
+    
+    component.getCloseButtons = function() {
+        return $(component.getElement()).find('.alert-close-button');
     };
 
-    this.show = function(selector, options) {
-        selector = isEmpty(selector) ? this.selector : selector;
-        options = this.resoleOptions(selector,options);
+    component.hide = function() {
+        var fadeOut = component.get('fade-out');
+        fadeOut = parseInt((isEmpty(fadeOut) == true) ? 0 : fadeOut);
 
-        var closeButton = $(selector).find('.alert-close-button');
-        if (isEmpty(closeButton) == false) {
-            $(closeButton).off();
-            $(closeButton).on('click',function() {                                 
-                self.hide(selector,options);
-            });    
-        }
-
-        $(selector).hide();
-        $(selector).removeClass('invisible');
-        $(selector).removeClass('hidden');
-        $(selector).fadeIn(options.fadeIn);
-        if (options.hideAfter > 0) {
-            $(selector).delay(options.hideAfter).fadeOut(options.fadeOut);
-        }     
+        $(component.getElement()).fadeOut(fadeOut);       
     };
 
-    this.setDescription = function(description, selector) {
-        selector = isEmpty(selector) ? this.selector : selector;
-        var alertContent = $(selector).find('.alert-content');
+    component.show = function() {
+        var fadeIn = component.get('fade-in');
+        fadeIn = parseInt((isEmpty(fadeIn) == true) ? 0 : fadeIn);
+        var hideAfter = component.get('hide-after');
+        hideAfter = parseInt((isEmpty(hideAfter) == true) ? 0 : hideAfter);
+        var fadeOut = component.get('fade-out');
+        fadeOut = parseInt((isEmpty(fadeOut) == true) ? 0 : fadeOut);
+        
+        $(component.getElement()).removeClass('invisible');
+        $(component.getElement()).removeClass('hidden');
+
+        $(component.getElement()).fadeIn(fadeIn);   
+        if (hideAfter > 0) {
+            $(component.getElement()).delay(hideAfter).fadeOut(fadeOut);
+        }      
+    };
+
+    component.setDescription = function(description) {      
+        var alertContent = $(component.getElement()).find('.alert-content');
         $(alertContent).find('.alert-description').html(description)
     };
 
-    this.hide = function(selector, options) {
-        selector = isEmpty(selector) ? this.selector : selector;
-        options = this.resoleOptions(selector,options);
-
-        $(selector).fadeOut(options.fadeOut);       
+    component.setTitle = function(title) {      
+        var alertContent = $(component.getElement()).find('.alert-content');
+        $(alertContent).find('.alert-title').html(description)
     };
 
-    this.resoleOptions = function(selector, options) {       
-        options = isEmpty(options) ? this.options : options;
-
-        return {
-            hideAfter: parseInt(getDefaultValue(getValue('hideAfter',options,$(selector).attr('hide-after')),0)),
-            fadeOut: parseInt(getDefaultValue(getValue('fadeOut',options,$(selector).attr('fade-out')),0)),
-            fadeIn: parseInt(getDefaultValue(getValue('fadeIn',options,$(selector).attr('fade-in')),0))
-        } 
+    component.init = function() {
+        var buttons = component.getCloseButtons();
+        
+        if (isEmpty(buttons) == false) {
+            $(buttons).off();
+            $(buttons).on('click',function() {
+                component.hide();
+            });
+        }
     };
-}
 
-Alert.init = function(selector, options) {
-    var alert = new Alert(selector,options);
-    alert.init();  
-    return alert;  
-};
-
-Alert.setDescription = function(description,selector) {
-    var alert = new Alert(selector);
-    alert.setDescription(description);
-    return alert;    
-};
-
-Alert.show = function(selector, options) {
-    var alert = new Alert(selector,options);
-    alert.show();    
-};
-
-Alert.hide = function(selector, options) {
-    var alert = new Alert(selector,options);
-    alert.hide();    
-}
-
-arikaim.component.onLoaded(function() {   
-    Alert.init();
+    // init
+    component.init();
 });

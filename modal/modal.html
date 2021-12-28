@@ -22,7 +22,9 @@
         <content class="modal-content {{ space|default('py-4 px-6') }}">
             {{ content }}
         </content>
-        <footer class="modal-footer flex flex-row {{ footer_class|default('place-content-end') }} {{ space|default('py-4 px-6') }}">              
+        <footer class="modal-footer flex flex-row 
+            {{ footer_class|default('place-content-end') }} 
+            {{ space|default('py-4 px-6') }}">              
             <button class="inline-block modal-close cursor-pointer transition-color duration-500 ease-in-out
                 {{ close_button|default('px-4 bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-800') }}">
                 {{ labels.close }}

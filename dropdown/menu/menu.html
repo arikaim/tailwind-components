@@ -1,11 +1,14 @@
 <div 
-    id="{{ id|default('dropdown-menu') }}" 
+    id="{{ component_id }}" 
     class="dropdown-menu hidden z-50 origin-top-left 
         {{ position|default('absolute left-0 right-0') }}  
         {{ size|default('w-56') }} {{ class }}" 
     role="menu" 
     aria-orientation="vertical">        
-    <div class="{{ content_class|default('py-1') }} {{ content_color|default('bg-white rounded-lg shadow-lg') }}" role="none">
+    <div class="dropdown-menu-content
+        {{ content_class|default('py-1') }} 
+        {{ content_color|default('bg-white rounded-lg shadow-lg') }}" 
+        role="none">
         {% for menu in items %}
             <a 
                 {{ menu.id|attr('id') }} 

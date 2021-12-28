@@ -1,0 +1,32 @@
+<dialog
+    id="{{ component_id }}"  
+    class="absolute block overflow-y-auto z-100
+    {{ position|default('top-0 left-0 ') }}
+    {{ border|default('border border-gray-500 border-solid') }}
+    {{ color|default('bg-white rounded-lg shadow-lg') }}
+    {{ size|default('w-72') }}">
+    <header class="bg-white modal-header flex justify-between items-center {{ space|default('py-2 px-2') }}">	    			       
+        <h4 class="modal-title {{ title_class|default('text-2xl font-bold') }}">
+            {{ title }}
+        </h4>
+        {{  component(close_icon|default('icons~close'),{ 
+                class: 'cursor-pointer dialog-close transition-color duration-500 ease-in-out', 
+                size: 'h-6 w-6', 
+                color: 'text-gray-800 hover:text-red-500' 
+            },'svg') 
+        }}               
+    </header>
+    <content class="dialog-content {{ space|default('py-2 px-2') }}">
+        {{ content }}
+    </content>
+    <footer class="dialog-footer flex flex-row 
+        {{ footer_class|default('place-content-end') }} 
+        {{ space|default('py-2 px-2') }}">  
+        {% if hide_close_button != true %}            
+        <btn class="inline-block dialog-close cursor-pointer transition-color duration-500 ease-in-out
+            {{ close_button|default('px-4 bg-blue-500 p-2 rounded-lg text-white hover:bg-blue-800') }}">
+            {{ buttons.close }}            
+        </btn>
+        {% endif %}
+    </footer>	
+</dialog>			

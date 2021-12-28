@@ -1,0 +1,41 @@
+{% set min = min|default(1) %}
+{% set step = step|default(10) %}
+{% set max = max|default(100) %}
+{% set value = (value > max) ? max : value|default(min) %}
+{% set bars = (max / step) %}
+<slider
+    id="{{ component_id }}"
+    min="{{ min }}"
+    max="{{ max }}"
+    value="{{ value }}"
+    class="slider {{ display|default('inline-flex') }} relative 
+    {{ height|default('h-2') }}
+    {{ width|default('w-64') }}
+    {{ color|default('bg-gray-500 rounded-full') }}">
+    <div class="absolute slider-bar h-full {{ bar_color|default('bg-teal-500 rounded-full') }}" style="width: {{ value }}%">
+    </div>
+    {% for bar in 0..bars %}   
+        <div 
+            class="inline-block h-full slider-parts bg-transparent z-50" 
+            bar-value="{{ (step * bar) }}"
+            style="width: {{ step }}%"></div>
+    {% endfor %}
+    <div 
+        class="absolute cursor-pointer slider-toggle
+        {{ toggle_size|default('h-6 w-6') }}
+        {{ toggle_color|default('bg-gray-300 rounded-full shadow border') }}
+        {{ position|default('-ml-2 -mt-1 top-0') }}"         
+        style="left: {{ value }}%">
+    </div>
+    {% if hidde_labels != true %}
+        <div 
+            class="absolute {{ label_class }} 
+            {{ label_text|default('text-gray-800') }} -ml-1 bottom-0 left-0 -mb-6">
+            {{ min }}
+        </div>
+        <div class="absolute {{ label_class }} 
+            {{ label_text|default('text-gray-800') }} -mr-1 bottom-0 right-0 -mb-6">
+            {{ max }}
+        </div>
+    {% endif %}
+</slider>

@@ -1,7 +1,7 @@
 'use strict';
 
-arikaim.component.onLoaded(function() {  
-    $('.dropdown-menu').mouseleave(function() { 
+arikaim.component.onLoaded(function(component) {
+    component.on('mouseleave',function() {
         $('.dropdown-menu').fadeOut(600); 
-    });  
+    });    
 });

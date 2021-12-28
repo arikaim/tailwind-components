@@ -1,4 +1,6 @@
-<sidebar {{ id|attr('id') }} class="sidebar flex flex-col justify-between items-center 
+<sidebar 
+    {{ id|attr('id') }} 
+    class="sidebar flex flex-col justify-between items-center 
     {{ color|default('bg-gray-900') }} 
     {{ class|default('h-full w-20 flex-shrink-0') }}">
     <div class="{{ content_class|default('p-2') }}">

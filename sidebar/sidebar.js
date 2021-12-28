@@ -1,6 +1,6 @@
 'use strict';
 
-arikaim.component.onLoaded(function() {   
+arikaim.component.onLoaded(function(component) {   
     function reizeWindowSidebarHandler() {
         clearTimeout(window.resizedFinished);
         window.resizedFinished = setTimeout(function(){         
