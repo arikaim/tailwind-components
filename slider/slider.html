@@ -12,19 +12,23 @@
     {{ height|default('h-2') }}
     {{ width|default('w-64') }}
     {{ color|default('bg-gray-500 rounded-full') }}">
-    <div class="absolute slider-bar h-full {{ bar_color|default('bg-teal-500 rounded-full') }}" style="width: {{ value }}%">
+    <div 
+        class="absolute slider-bar h-full z-10 
+        {{ bar_color|default('bg-teal-500 rounded-full') }}" 
+        style="width: {{ value }}%">
     </div>
     {% for bar in 0..bars %}   
         <div 
-            class="inline-block h-full slider-parts bg-transparent z-50" 
+            class="inline-block h-full slider-parts bg-transparent z-40" 
             bar-value="{{ (step * bar) }}"
             style="width: {{ step }}%"></div>
     {% endfor %}
     <div 
-        class="absolute cursor-pointer slider-toggle
+        class="absolute cursor-pointer slider-toggle z-50
         {{ toggle_size|default('h-6 w-6') }}
         {{ toggle_color|default('bg-gray-300 rounded-full shadow border') }}
-        {{ position|default('-ml-2 -mt-1 top-0') }}"         
+        {{ position|default('-ml-2 -mt-1 top-0') }}"
+        draggable="true"         
         style="left: {{ value }}%">
     </div>
     {% if hidde_labels != true %}
