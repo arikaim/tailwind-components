@@ -3,19 +3,19 @@
     {{ hint|attr('title') }}
     icon-rotate="{{ icon_rotate_class|default('origin-center transform rotate-90') }}"    
     class="accordion flex flex-col justify-center items-start {{ class }}">   
-    <h2 class="{{ title_class|default('text-xl font-bold p-2') }}">
+    <h2 class="{{ title_class|default('text-xl font-bold p-1') }}">
         {{ title }}
     </h2>
-    <items class="flex flex-col flex-grow max-h-96 {{ content_class|default('w-full') }}">
+    <items class="flex flex-col flex-grow {{ content_class|default('w-full') }}">
         {% for item in items %}
         <item class="blok accordion-item
             {{ (item.hidden == true) ? 'hidden' : '' }}
-            {{ item.space|default('my-2') }} 
-            {{ item.color|default('bg-white shadow') }}">
+            {{ item_space }} 
+            {{ item_color }}">
             <div                
-                class="accordion-item-title cursor-pointer flex flex-row items-center  w-full
+                class="accordion-item-title cursor-pointer flex flex-row items-center w-full
                 {{ item.disabled|attr('disabled') }}  
-                {{ item_title_class|default('font-bold p-3') }}                      
+                {{ item_title_class|default('font-bold p-2') }}                      
                 {{ item_disabled_class }}">
                 {{  component(item_icon|default('icons~chevron.right'),{ 
                         size: 'h-6 w-6', 
@@ -26,10 +26,10 @@
                     {{ item.title }}
                 </div>              
             </div>
-            <div class="accordion-item-content overflow-hidden max-h-0 duration-500 ease-in-out transition-all">                             
-                <p class="{{ item_content_class|default('p-2 px-4') }}">
-                    {{ item.content }}      
-                </p>                                                     
+            <div            
+                class="accordion-item-content overflow-hidden max-h-0 duration-500 ease-in-out transition-all
+                {{ item_content_class|default('px-2') }}">                                            
+                {{ item.content }}                                                                        
             </div>
         </item>
         {% endfor %}

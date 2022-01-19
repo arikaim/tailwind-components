@@ -3,7 +3,7 @@
 arikaim.component.onLoaded(function(component) {
 
     component.getButton = function() {
-        return $(component.getElement()).find('.color-pick-button');
+        return $(component.getElement()).find('.border-pick-button');
     }
 
     component.select = function(element) {
@@ -39,15 +39,31 @@ arikaim.component.onLoaded(function(component) {
         $(component.getElement()).find('menu').on('mouseleave',function() { 
             component.hideMenu();
         });  
-        
-        var closeButton = $(component.getElement()).find('.color-picker-close');
+    
+        var closeButton = $(component.getElement()).find('.border-picker-close');
         $(closeButton).on('click',function() {
             component.toggleMenu();
         });
 
-        var colors = $(component.getElement()).find('color');
-        $(colors).on('click',function() {
-            component.select(this);
+        var widthItems = $(component.getElement()).find('borderWidth');
+        $(widthItems).on('click',function() {
+            var value = $(this).attr('value');
+            console.log(value);
+
+        });
+
+        var styleItems = $(component.getElement()).find('borderStyle');
+        $(styleItems).on('click',function() {
+            var value = $(this).attr('value');
+            console.log(value);
+
+        });
+
+        var radiusItems = $(component.getElement()).find('borderRadius');
+        $(radiusItems).on('click',function() {
+            var value = $(this).attr('value');
+            console.log(value);
+
         });
     };
 

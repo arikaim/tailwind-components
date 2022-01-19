@@ -1,0 +1,32 @@
+{
+    "border": {
+        "width": [
+            "border-0",
+            "border",
+            "border-2",
+            "border-4",
+            "border-8"
+        ],
+        "style": [
+            "border-none",
+            "border-solid",
+            "border-dashed",
+            "border-dotted",
+            "border-double"
+        ],
+        "radius": [
+            "rounded-none",
+            "rounded-sm",
+            "rounded",
+            "rounded-md",
+            "rounded-lg",
+            "rounded-xl",
+            "rounded-full"
+        ]
+    },
+    "label": {
+        "width": "Width",
+        "style": "Style",
+        "radius": "Radius"
+    }
+}

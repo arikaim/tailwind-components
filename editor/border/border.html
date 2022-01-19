@@ -1,0 +1,88 @@
+{% set selected = selected|default('white') %}
+{% set label_class = label_class|default('text-md font-bold text-gray-500 uppercase') %}
+<borderPicker
+    id="{{ component_id }}"
+    selected="{{ selected }}"
+    border-width="{{ width }}"
+    border-style="{{ style }}"
+    border-radius="{{ radius }}"
+    class="border-style-picker relative inline-flex flex-col items-start {{ class }}">
+    <selected 
+        class="inline-block h-10 w-10 border-pick-button cursor-pointer transition-colors duration-700       
+        {{ selected_class }}
+        {{ selected_hover|default('hover:border-green-500 hover:shadow-2xl') }}
+        {{ selected_border|default('rounded-xl border-2 border-gray-300 border-solid') }}">
+        <input name="{{ field_name|default('border') }}" type="hidden" value="{{ selected }}">                             
+    </selected>
+    <menu 
+        class="hidden z-50 mt-12 top-0 absolute left-0 p-4
+        {{ menu_color|default('bg-white') }}
+        {{ menu_border|default('rounded-xl border border-gray-200 border-solid shadow-md') }}
+        {{ menu_class }}"> 
+        <div class="flex flex-grow flex-row justify-end w-full px-1">
+            {{  component('icons~close',{ 
+                    class: 'border-picker-close',
+                    color: 'cursor-pointer transition-colors duration-700 hover:text-red-500',
+                    size: 'w-7 h-7' 
+                },'svg') 
+            }} 
+        </div> 
+        <div class="px-2 {{ label_class }}">
+            {{ width_label|default(label.width) }}  
+        </div>      
+        <div
+            class="px-4 py-1
+            {{ grid|default('tailwind-grid grid-cols-5 gap-8 justify-center place-content-center') }}
+            {{ size|default('w-96 h-full') }}">                      
+            {% for border_width in border.width %}                     
+                <borderWidth 
+                    title="{{ border_width }}"                       
+                    value="{{ border_width }}"                                              
+                    class="pl-2 flex flex-row items-center w-12 h-12 border-item cursor-pointer transition-colors duration-700 
+                    {{ (border_width == 'border-0') ? 'border' : border_width }} border-gray-500 border-solid     
+                    {{ item_color_hover|default('hover:border-green-500 hover:shadow-2xl') }}">   
+                    {% if border_width == 'border-0' %}  
+                        {{ component('icons~close',{ class: '', size: 'w-8 h-8' },'svg') }} 
+                    {% endif %}                                                   
+                </borderWidth>
+            {% endfor %}   
+        </div>
+        <div class="p-2 {{ label_class }}">
+            {{ style_label|default(label.style) }}  
+        </div>      
+        <div
+            class="px-4 py-1
+            {{ grid|default('tailwind-grid grid-cols-5 gap-8 justify-center place-content-center') }}
+            {{ size|default('w-96 h-full') }}">                      
+            {% for border_style in border.style %}                     
+                <borderStyle
+                    title="{{ border_style }}"                       
+                    value="{{ border_style }}"                                              
+                    class="pl-2 flex flex-row items-center w-12 h-12 border-item cursor-pointer transition-colors duration-700 
+                    {{ border_style }} border-2 border-gray-500 border-solid     
+                    {{ item_color_hover|default('hover:border-green-500 hover:shadow-2xl') }}">   
+                    {% if border_style == 'border-none' %}  
+                        {{ component('icons~close',{ class: '', size: 'w-8 h-8' },'svg') }} 
+                    {% endif %}                                                   
+                </borderStyle>
+            {% endfor %}   
+        </div> 
+        <div class="p-2 {{ label_class }}">
+            {{ radius_label|default(label.radius) }}  
+        </div>   
+        <div
+            class="px-4 py-1
+            {{ grid|default('tailwind-grid grid-cols-5 gap-8 justify-center place-content-center') }}
+            {{ size|default('w-96 h-full') }}">                      
+            {% for border_radius in border.radius %}                     
+                <borderRadius
+                    title="{{ border_radius }}"                       
+                    value="{{ border_radius }}"                                              
+                    class="pl-2 flex flex-row items-center w-12 h-12 border-item cursor-pointer transition-colors duration-700 
+                    {{ border_radius }} border-2 border-gray-500 border-solid     
+                    {{ item_color_hover|default('hover:border-green-500 hover:shadow-2xl') }}">                                                                 
+                </borderRadius>
+            {% endfor %}   
+        </div>       
+    </menu>
+</borderPicker>

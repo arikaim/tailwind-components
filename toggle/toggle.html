@@ -3,17 +3,19 @@
     checked="{{ checked|default(0) }}"
     color="{{ color|default('bg-white') }}"
     active-color="{{ active_color|default('bg-green-500') }}"
-    class="relative inline-flex flex-shrink-0 cursor-pointer rounded-full 
+    class="cursor-pointer 
         {{ size|default('w-12 h-7') }} 
         {{ color|default('bg-white') }} 
-        {{ border|default('border-2 border-transparent-50') }}
-        {{ class }}">
-        <input type="hidden" name="{{ field.name|default('toggle') }}" {{ field.id|attr('id') }}/>
-        <span            
-            class="border-2 toggle-button pointer-events-none inline-block left-0 rounded-full transform ring-0 transition ease-in-out duration-200
+        {{ border|default('rounded-full border-2 border-transparent-50') }}
+        {{ class|default('inline-block') }}">
+        {% if field.name is not empty %}
+            <input type="hidden" name="{{ field.name|default('toggle') }}" {{ field.id|attr('id') }}/>
+        {% endif %}
+        <div            
+            class="top-0 bottom-0 border-1 toggle-button pointer-events-none inline-block left-0 rounded-full transform transition ease-in-out duration-200
                 {{ (checked == 1) ? 'translate-x-full' : 'translate-x-0' }} 
                 {{ button.class }} 
                 {{ button.color|default('bg-blue-600 shadow-lg') }} 
                 {{ button.size|default('h-6 w-6') }}"/>
-        </span>
+        </div>
 </toggle>
