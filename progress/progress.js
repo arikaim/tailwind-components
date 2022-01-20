@@ -33,4 +33,6 @@ arikaim.component.onLoaded(function(component) {
         var currentValue = parseInt(component.get('value'));
         component.setValue(currentValue + value);
     };
+
+    return component;
 });

@@ -1,4 +1,6 @@
-{% set selected = selected|default('white') %}
+{% set selcted_bg = colors[selected].bg %}
+{% set selected_color = colors[selected] %}
+{% set selected = (data_type is not empty) ? selected_color[data_type] : selected %}
 <colorPicker
     id="{{ component_id }}"
     selected="{{ selected }}"
@@ -7,7 +9,7 @@
     class="color-picker relative inline-flex flex-col items-start {{ class }}">
     <selected 
         class="inline-block h-10 w-10 color-pick-button cursor-pointer transition-colors duration-700  
-        {{ colors[selected].bg }} 
+        {{ selcted_bg }} 
         {{ selected_class }}
         {{ selected_hover|default('hover:border-green-500 hover:shadow-2xl') }}
         {{ selected_border|default('rounded-xl border-2 border-gray-300 border-solid') }}">
@@ -23,7 +25,7 @@
         {{ menu_color|default('bg-white') }}
         {{ menu_border|default('rounded-xl border border-gray-200 border-solid shadow-md') }}
         {{ menu_class }}"> 
-        <div class="flex flex-grow flex-row justify-end w-full p-2 px-3">
+        <div class="flex flex-grow flex-row justify-end w-full p-1 px-3">
             {{  component('icons~close',{ 
                     class: 'color-picker-close',
                     color: 'cursor-pointer transition-colors duration-700 hover:text-red-500',
@@ -32,7 +34,7 @@
             }} 
         </div>            
         <div
-            class="p-4
+            class="px-4 py-1
             {{ grid|default('tailwind-grid grid-cols-10 gap-2 justify-center place-content-center')  }}
             {{ size|default('p-2 w-96') }}">
                        

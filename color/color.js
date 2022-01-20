@@ -7,16 +7,22 @@ arikaim.component.onLoaded(function(component) {
     }
 
     component.select = function(element) {
-        var bgColor = $(element).attr('bg-color'); 
-        var selected = component.get('background');
+        var bgColor = $(element).attr('bg-color');        
         var value = $(element).attr('value');
-
-        $(this.getButton()).removeClass(selected).addClass(bgColor);
-        component.set('background',bgColor);
-        component.set('selected',value);
-        
-        $(component.getElement()).find('input').val();
+      
+        this.selectColor(value,bgColor);
         component.toggleMenu();
+    };
+
+    component.selectColor = function(color, bgColor) {
+        // remove bg color class
+        var background = component.get('background');
+        $(this.getButton()).removeClass(background).addClass(bgColor);
+
+        component.set('background',bgColor);
+        $(component.getElement()).find('input').val(color);      
+        // set prop
+        component.set('selected',color);
     };
 
     component.toggleMenu = function() {
@@ -52,4 +58,6 @@ arikaim.component.onLoaded(function(component) {
     };
 
     component.init();
+
+    return component;
 });

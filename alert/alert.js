@@ -53,4 +53,6 @@ arikaim.component.onLoaded(function(component) {
 
     // init
     component.init();
+
+    return component;
 });
