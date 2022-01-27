@@ -1,0 +1,29 @@
+<div 
+    id="{{ component_id|default('dark-mode') }}"
+    mode="{{ mode|default('light') }}"
+    class="flex flex-row items-center dark-mode 
+    {{ class }} {{ border }} {{ color }}">
+    {% if hide_labels != true %}
+    <div class="{{ label_class|default('px-1') }}">
+        {{ label.light|default(labels.light) }}
+    </div>
+    {% endif %}
+    <div class="{{ toggle_panel_class|default('px-1') }}">
+        {{  component('tailwind~toggle',{ 
+                component_id: 'dark-mode-toggle',
+                class: toggle.class,
+                size: toggle.size,
+                color: toggle.color,
+                border: toggle.border,
+                active_color: toggle.active,
+                button: toggle.button,
+                checked: (mode == 'dark') ? 1 : 0
+            }) 
+        }}
+    </div>
+    {% if hide_labels != true %}
+    <div class="{{ label_class|default('px-1') }}">
+        {{ label.dark|default(labels.dark) }}
+    </div>
+    {% endif %}
+</div>
