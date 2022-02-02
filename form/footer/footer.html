@@ -1,7 +1,11 @@
 <div class="{{ class|default('mt-8') }}">
     <div class="flex flex-row">
         <button 
-            class="submit-button {{ button.class|default('ui button green') }}" 
+            loading-class="{{ loading_class|default('loading') }}"
+            class="submit-button cursor-pointer
+            {{ button.color|default('bg-green-500 hover:bg-green-600 transition duration-1000 ease-in-out') }}
+            {{ button.border|default('rounded-lg border-2 border-green-600') }}
+            {{ button.class|default('py-1 px-3 font-bold text-white') }}" 
             title="{{ button.hint|default(buttons.save.hint) }}">
             {{ button.title|default(buttons.save.content) }}
         </button>    
@@ -12,9 +16,9 @@
         {% endif %}
     </div>   
     <div class="{{ message.class|default('h-20 mt-4') }}">
-        <div class="ui errors error hidden message {{ message.error|default('p-2 border border-solid border-red-400 rounded-lg') }}">        
+        <div class="errors error hidden message {{ message.error|default('p-2 text-red-400 font-bold') }}">        
         </div> 
-        <div class="ui success hidden {{ message.success|default('p-2 border border-solid border-green-400 rounded-lg') }}" id="message">        
+        <div class="success hidden {{ message.success|default('p-2 text-green-400 font-bold') }}" id="message">        
         </div>  
     </div>   
 </div>
