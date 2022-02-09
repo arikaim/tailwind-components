@@ -1,0 +1,22 @@
+<div
+    id="{{ component_id }}"
+    class="{{ class }}">
+    <form 
+        id="{{ form_id|default('file_form') }}"
+        class="form {{ form_class }}"  
+        enctype="multipart/form-data">
+        {% for input in fields|default({}) %}
+            <input 
+                type="hidden" 
+                {{ input.name|attr(name) }} 
+                {{ input.id|attr(id) }} 
+                value="{{ input.value }}">
+        {% endfor %}
+        <div class="field {{ field_class }}">               
+            <label class="{{ label_class }}">
+                {{ labels.file }}
+            </label>           
+            <input name="file[]" id="file" type="file">                       
+        </div>        
+    </form>
+</div>
