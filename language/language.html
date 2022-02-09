@@ -9,10 +9,10 @@
 <div 
     id="{{ component_id }}"
     selected="{{ selected.code }}"
-    class="language-dropdown relative inline-block text-left"> 
-    <btn type="button" 
-        class="dropdown-button cursor-pointer flex justify-center self-center {{ button_class|default('p-2 rounded-md') }}" 
-        id="language-button" aria-expanded="true" aria-haspopup="true">
+    class="language-dropdown relative inline-block text-left {{ class }}"> 
+    <btn
+        class="dropdown-button cursor-pointer flex justify-center self-center {{ button_class }}" 
+        id="language-button">
         <i class="ui flag {{ selected.country_code|lower }}"></i>
         {% if hide_icon != true %}
             {{  component('icons~chevron.down',{ 
@@ -24,7 +24,6 @@
     </btn>
     <div id="language-menu" 
         class="hidden z-50 origin-top-right absolute right-0 {{ size|default('w-56 h-full') }} {{ class }}" 
-        role="menu" 
         aria-orientation="vertical" 
         aria-labelledby="options-menu">
         <input name="{{ name }}" type="hidden" value="{{ selected.code }}">
