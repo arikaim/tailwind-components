@@ -4,7 +4,26 @@ arikaim.component.onLoaded(function(component) {
 
     component.getButton = function() {
         return $(component.getElement()).find('.border-pick-button');
-    }
+    };
+
+    component.removeSelectedBorderStyle = function() {
+        var width = component.get('border-width');
+        var style = component.get('border-style');
+        var radius = component.get('border-radius');
+        var selectedElement = $(component.getElement()).find('selected');
+        $(selectedElement).removeClass(width).removeClass(style).removeClass(radius);
+    };
+
+    component.resolveSelected = function() {
+        var width = component.get('border-width');
+        var style = component.get('border-style');
+        var radius = component.get('border-radius');
+        var selectedElement = $(component.getElement()).find('selected');
+
+        $(selectedElement).addClass(width).addClass(style).addClass(radius);
+
+        component.set('selected',width + ' ' + style + ' ' + radius);
+    };
 
     component.select = function(element) {
         var bgColor = $(element).attr('bg-color'); 
@@ -47,23 +66,41 @@ arikaim.component.onLoaded(function(component) {
 
         var widthItems = $(component.getElement()).find('borderWidth');
         $(widthItems).on('click',function() {
+            component.removeSelectedBorderStyle();
             var value = $(this).attr('value');
-            console.log(value);
+            component.set('border-width',value);
+            component.resolveSelected();
 
+            var selectedColor = component.get('selected-color');  
+    
+            $(widthItems).removeClass(selectedColor);       
+            $(this).removeClass('border-gray-500').addClass(selectedColor);
         });
 
         var styleItems = $(component.getElement()).find('borderStyle');
         $(styleItems).on('click',function() {
+            component.removeSelectedBorderStyle();
             var value = $(this).attr('value');
-            console.log(value);
+            component.set('border-style',value);
+            component.resolveSelected();
 
+            var selectedColor = component.get('selected-color');  
+
+            $(styleItems).removeClass(selectedColor);       
+            $(this).removeClass('border-gray-500').addClass(selectedColor);
         });
 
         var radiusItems = $(component.getElement()).find('borderRadius');
         $(radiusItems).on('click',function() {
+            component.removeSelectedBorderStyle();
             var value = $(this).attr('value');
-            console.log(value);
+            component.set('border-radius',value);
+            component.resolveSelected();
 
+            var selectedColor = component.get('selected-color');  
+
+            $(radiusItems).removeClass(selectedColor);       
+            $(this).removeClass('border-gray-500').addClass(selectedColor);
         });
     };
 

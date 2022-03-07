@@ -1,4 +1,4 @@
-{% set selected = selected|default('white') %}
+{% set selected = selected|default('rounded-xl border-2 border-gray-300 border-solid') %}
 {% set label_class = label_class|default('text-md font-bold text-gray-500 uppercase') %}
 <borderPicker
     id="{{ component_id }}"
@@ -6,12 +6,13 @@
     border-width="{{ width }}"
     border-style="{{ style }}"
     border-radius="{{ radius }}"
+    selected-color="{{ selected_color|default('border-green-500') }}"  
     class="border-style-picker relative inline-flex flex-col items-start {{ class }}">
     <selected 
         class="inline-block h-10 w-10 border-pick-button cursor-pointer transition-colors duration-700       
         {{ selected_class }}
-        {{ selected_hover|default('hover:border-green-500 hover:shadow-2xl') }}
-        {{ selected_border|default('rounded-xl border-2 border-gray-300 border-solid') }}">
+        {{ selected_hover|default('hover:border-green-500 hover:shadow') }}
+        {{ selected }}">
         <input name="{{ field_name|default('border') }}" type="hidden" value="{{ selected }}">                             
     </selected>
     <menu 
@@ -36,11 +37,11 @@
             {{ size|default('w-96 h-full') }}">                      
             {% for border_width in border.width %}                     
                 <borderWidth 
-                    title="{{ border_width }}"                       
+                    title="{{ border_width }}"                                        
                     value="{{ border_width }}"                                              
                     class="pl-2 flex flex-row items-center w-12 h-12 border-item cursor-pointer transition-colors duration-700 
                     {{ (border_width == 'border-0') ? 'border' : border_width }} border-gray-500 border-solid     
-                    {{ item_color_hover|default('hover:border-green-500 hover:shadow-2xl') }}">   
+                    {{ item_color_hover|default('hover:border-green-500 hover:shadow-xl') }}">   
                     {% if border_width == 'border-0' %}  
                         {{ component('icons~close',{ class: '', size: 'w-8 h-8' },'svg') }} 
                     {% endif %}                                                   

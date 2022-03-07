@@ -13,5 +13,7 @@ Arikaim CMS html components library created with Tailwind CSS
 #### Installation
 
 ```sh
+
 composer require arikaim/tailwind-components
+
 ```
