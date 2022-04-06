@@ -5,10 +5,11 @@
             class="submit-button cursor-pointer
             {{ button.color|default('bg-green-500 hover:bg-green-600 transition duration-1000 ease-in-out') }}
             {{ button.border|default('rounded-lg border-2 border-green-600') }}
-            {{ button.class|default('py-1 px-3 font-bold text-white') }}" 
-            title="{{ button.hint|default(buttons.save.hint) }}">
+            {{ button.class|default('py-1 px-3 font-bold text-white') }}
+            {{ button.disabled|default('disabled:bg-gray-500 disabled:border-gray-800') }}" 
+            {{ button.hint|attr('title') }}>
             {{ button.title|default(buttons.save.content) }}
-        </button>    
+        </button>      
         {% if cancel is not empty %}
         <a class="cancel-button {{ cancel.class|default('ui button') }}" title="{{ cancel.hint|default(buttons.cancel.hint) }}">
             {{ cancel.title|default(buttons.cancel.title) }}

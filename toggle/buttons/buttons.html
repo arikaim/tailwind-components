@@ -1,0 +1,24 @@
+{% set active_color = active_color|default('bg-sky-600 transition-colors duration-700 text-white') %}
+{% set button_hover = button_hover|default('hover:text-sky-700 hover:bg-sky-300 transition duration-1000 ease-in-out') %}
+<buttons
+    id="{{ component_id }}"
+    selected="{{ selected|default(1) }}"
+    active-color="{{ active_color }}"
+    class="inline-block
+    {{ color|default('bg-stone-200') }} 
+    {{ border|default('rounded-xl') }}
+    {{ class|default('p-1') }}">
+    {% for button in buttons %}
+    <toggleButton 
+        index="{{ loop.index }}"
+        value="{{ button.value|default(loop.index) }}"
+        class="inline-flex cursor-pointer select-none toogle-button
+        {{ (button.selected == true) ? active_color : '' }} 
+        {{ button_border|default('rounded-lg') }} 
+        {{ button_space|default('py-1 px-2') }}
+        {{ button_hover }}
+        {{ button_text|default('text-center') }}">
+        {{ button.label }}
+    </toggleButton>
+    {% endfor %}
+</buttons>
