@@ -18,11 +18,11 @@
     </div>   
     <div class="{{ message.class|default('h-20 mt-4') }}">
         <div 
-            {{ message.error.id|attr('id') }}
+            {{ message_error_id|attr('id') }}
             class="errors error hidden message error-message {{ message.error|default('p-2 text-red-400 font-bold') }}">        
         </div> 
         <div
-            {{ message.success.id|attr('id') }} 
+            {{ message_success_id|attr('id') }} 
             class="success hidden success-message {{ message.success|default('p-2 text-green-400 font-bold') }}">        
         </div>  
     </div>   
