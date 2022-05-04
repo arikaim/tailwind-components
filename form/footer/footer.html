@@ -11,9 +11,13 @@
             {{ button.title|default(buttons.save.content) }}
         </button>      
         {% if cancel is not empty %}
-        <a class="cancel-button {{ cancel.class|default('ui button') }}" title="{{ cancel.hint|default(buttons.cancel.hint) }}">
-            {{ cancel.title|default(buttons.cancel.title) }}
-        </a>    
+        <div class="px-2">
+            <a 
+                class="content-end self-end justify-self-end cancel-button {{ cancel.class|default('ui button') }}" 
+                title="{{ cancel.hint|default(buttons.cancel.hint) }}">
+                {{ cancel.title|default(buttons.cancel.title) }}
+            </a>  
+        </div>
         {% endif %}
     </div>   
     <div class="{{ message.class|default('h-20 mt-4') }}">
