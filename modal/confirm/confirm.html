@@ -1,0 +1,24 @@
+<div 
+    class="modal modal-bottom sm:modal-middle {{ class }}"
+    id="{{ component_id }}">
+    <div 
+        class="modal-box p-0
+        {{ size|default('w-11/12 max-w-5xl') }} 
+        {{ color|default('bg-white') }}
+        {{ border|default('rounded-lg shadow') }}">
+        <h3 class="font-bold text-lg {{ title_class }}">
+            {{ title|default(title) }}
+        </h3>
+        <p class="{{ content_class|default('p-4') }}">
+            {{ content }}
+        </p>
+        <div class="modal-action {{ modal_action|default('p-2') }}">
+            <label class="btn btn-sm btn-success modal-confirm-button">
+                {{ labels.confirm }}
+            </label>
+            <label class="btn btn-sm btn-error modal-cancel-button">
+                {{ labels.cancel }}
+            </label>
+        </div>
+    </div>
+</div>
