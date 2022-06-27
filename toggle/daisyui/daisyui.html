@@ -1,0 +1,20 @@
+<div    
+    class="flex flex-row items-center {{ class }}">
+    {% if left_label is not empty %}
+        <div class="{{ label_class|default('px-1') }}">        
+            {{ left_label }}
+        </div>
+    {% endif %}
+    <input      
+        id="{{ component_id }}"  
+        value="{{ (checked == true) ? 1 : 0 }}"
+        type="checkbox" 
+        class="cursor-pointer toggle {{ toggle_class }}" 
+        {{ (checked == true) ? 'checked' : '' }}
+        {{ (disabled == true) ? 'disabled' : '' }} />
+    {% if right_label is not empty %}
+        <div class="{{ label_class|default('px-1') }}">        
+            {{ right_label }}
+        </div>
+    {% endif %}
+</div>

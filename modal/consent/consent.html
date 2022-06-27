@@ -1,0 +1,35 @@
+<div 
+    class="modal modal-bottom {{ class }}"
+    id="{{ component_id|default('cookie-dialog') }}"
+    interval="{{ interval|default(7) }}">
+    <div 
+        class="modal-box p-0
+        {{ position|default('bottom-1 left-0') }}
+        {{ size|default('w-96 max-w-5xl') }} 
+        {{ color|default('bg-white') }}
+        {{ border|default('rounded-lg shadow') }}">
+        <h3 class="p-2 font-bold text-lg {{ title_class }}">
+            {{ title|default(title) }}
+        </h3>
+        <p class="{{ content_class|default('p-4 text-md') }}">
+            {{ content|default('content') }}
+        </p>
+        {% if link is not empty %}
+        <div class="flex flex-row items-center">
+            <div class="px-1">
+                {{ details }}
+            </div>
+            <div class="px-1">
+                <a href="{{ url(link) }}">
+                    {{ link_title|default(labels.link) }}
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        <div class="modal-action {{ modal_action|default('p-2') }}">
+            <label class="btn {{ button_class }} btn-success modal-accept-button">
+                {{ buttons.accept }}
+            </label>           
+        </div>
+    </div>
+</div>

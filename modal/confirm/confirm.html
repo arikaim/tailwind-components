@@ -6,10 +6,10 @@
         {{ size|default('w-11/12 max-w-5xl') }} 
         {{ color|default('bg-white') }}
         {{ border|default('rounded-lg shadow') }}">
-        <h3 class="font-bold text-lg {{ title_class }}">
+        <h3 class="modal-title font-bold text-lg {{ title_class }}">
             {{ title|default(title) }}
         </h3>
-        <p class="{{ content_class|default('p-4') }}">
+        <p class="modal-content {{ content_class|default('p-4') }}">
             {{ content }}
         </p>
         <div class="modal-action {{ modal_action|default('p-2') }}">
