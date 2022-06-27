@@ -1,0 +1,21 @@
+{% set per_page = getRowsPerPage(namespace) %}
+{% set items = [15,25,50,70,100] %}
+<div 
+    id="{{ component_id }}"
+    namespace="{{ namespace }}"
+    pageSize="{{ per_page }}"
+    class="dropdown {{ class }}">
+    <label tabindex="0" class="btn btn-sm btn-outline gap-2">
+        {{ component('icons~menu',{ size: 'h-4 w-4' },'svg') }}
+        <span id="current_page_size">{{ per_page }}</span>
+    </label>
+    <ul tabindex="0" class="mt-1 dropdown-content menu menu-compact shadow bg-white rounded-lg w-24">         
+        {% for value in items %}
+        <li>
+            <a class="page-size-select {{ (value == per_page) ? 'active' : '' }}" page-size-value="{{ value }}">
+                {{ value }}
+            </a> 
+        </li>                  
+        {% endfor %}   
+    </ul>
+</div>
