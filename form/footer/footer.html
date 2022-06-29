@@ -8,26 +8,27 @@
             {{ button.class|default('py-1 px-3 font-bold text-white') }}
             {{ button.disabled|default('disabled:bg-gray-500 disabled:border-gray-800') }}" 
             {{ button.hint|attr('title') }}>
-            {{ button.title|default(buttons.save.content) }}
+            {{ (button.title is empty) ? button_title|default(buttons.save.title) : button.title }}
         </button>      
         {% if cancel is not empty %}
         <div class="px-2">
             <a 
-                class="content-end self-end justify-self-end cancel-button {{ cancel.class|default('ui button') }}" 
+                class="content-end self-end justify-self-end cancel-button 
+                {{ cancel.class|default('ui button') }}" 
                 title="{{ cancel.hint|default(buttons.cancel.hint) }}">
-                {{ cancel.title|default(buttons.cancel.title) }}
+                {{ (cancel.title|default(buttons.cancel.title) }}
             </a>  
         </div>
         {% endif %}
     </div>   
-    <div class="{{ message.class|default('h-20 mt-4') }}">
-        <div 
+    <div class="{{ message.class|default('h-12 mt-4') }}">       
+        <div         
             {{ message_error_id|attr('id') }}
-            class="errors error hidden message error-message {{ message.error|default('p-2 text-red-400 font-bold') }}">        
-        </div> 
+            class="errors error invisible message error-message {{ message.error|default('p-2 text-red-400 font-bold') }}">           
+        </div>         
         <div
             {{ message_success_id|attr('id') }} 
-            class="success hidden success-message {{ message.success|default('p-2 text-green-400 font-bold') }}">        
+            class="success invisible success-message {{ message.success|default('p-2 text-green-400 font-bold') }}">        
         </div>  
     </div>   
 </div>
