@@ -76,8 +76,17 @@ arikaim.component.onLoaded(function(component) {
         } 
     };
 
+    component.getAttributes = function getAttributes($node) {
+        var attrs = {};
+        $.each($node[0].attributes, function (index,attribute) {
+            attrs[attribute.name] = attribute.value ?? null;
+        });       
+        return attrs;
+    };
+
     component.loadRows = function(onSuccess) {  
-        var params = {};
+        var rowsElement = $('#' + component.get('rows-selector'));
+        var params = component.getAttributes(rowsElement);
 
         return arikaim.page.loadContent({
             mountTo: component.get('rows-selector'),
