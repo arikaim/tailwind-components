@@ -1,29 +1,21 @@
-<div 
-    id="{{ component_id|default('dark-mode') }}"
-    mode="{{ mode|default('light') }}"
-    class="flex flex-row items-center dark-mode 
-    {{ class }} {{ border }} {{ color }}">
-    {% if hide_labels != true %}
-    <div class="{{ label_class|default('px-1') }}">
-        {{ label.light|default(labels.light) }}
-    </div>
-    {% endif %}
-    <div class="{{ toggle_panel_class|default('px-1') }}">
-        {{  component('tailwind~toggle',{ 
-                component_id: 'dark-mode-toggle',
-                class: toggle.class,
-                size: toggle.size,
-                color: toggle.color,
-                border: toggle.border,
-                active_color: toggle.active,
-                button: toggle.button,
-                checked: (mode == 'dark') ? 1 : 0
-            }) 
-        }}
-    </div>
-    {% if hide_labels != true %}
-    <div class="{{ label_class|default('px-1') }}">
-        {{ label.dark|default(labels.dark) }}
-    </div>
-    {% endif %}
-</div>
+{% set size = size|default('h-6 w-6') %}
+{% set color = color|default('text-gray-800 dark:text-gray-100') %}
+<label 
+    class="swap {{ class|default('swap-rotate') }} {{ border }} {{ color }}">
+    <input 
+        id="{{ component_id|default('dark-mode') }}"
+        mode="{{ mode|default('light') }}"
+        type="checkbox" />
+    {{  component('icons~sun',{ 
+            color: color, 
+            size: size, 
+            class: 'swap-on' 
+        },'svg') 
+    }}
+    {{  component('icons~moon',{ 
+            color: color, 
+            size: size, 
+            class: 'swap-off' 
+        },'svg') 
+    }}
+</label>
