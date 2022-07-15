@@ -4,6 +4,7 @@
 {% set from_page = (from_page < 1) ? 1 : from_page  %}
 {% set to_page = (from_page + page_links) %}
 {% set to_page = (to_page > paginator.last_page) ? paginator.last_page : to_page %}
+{% set icon_size = icon_size|default('h-4 w-4') %}
 <div 
     id="{{ component_id }}"
     rows-selector="{{ rows_selector }}"
@@ -17,30 +18,37 @@
     <btn 
         class="btn page-link first-page
         {{ button_class|default('btn-sm') }} 
-        {{ (paginator.current_page == 1) ? 'disabled' : '' }}
+        {{ (paginator.current_page == 1) ? 'hidden' : '' }}
         {{ (paginator.current_page == 1) ? 'btn-active' : '' }}"
         page="1">
-        «
+        {{ component('icons~chevron.double.left',{ size: icon_size },'svg') }}
     </btn>
-
+    <btn class="btn prev-page page-link {{ button_class|default('btn-sm') }} 
+        {{ (paginator.current_page == 1) ? 'hidden' : '' }}" 
+        page="prev">
+        {{ component('icons~chevron.left',{ size: icon_size },'svg') }}
+    </btn> 
     {% for index in from_page..to_page %}
         <btn 
             class="btn page-link page-{{ index }}
-            {{ button_class|default('btn-sm') }} 
-            {{ (paginator.current_page == index) ? 'disabled' : '' }}
+            {{ button_class|default('btn-sm') }}            
             {{ (paginator.current_page == index) ? 'btn-active' : '' }}" 
             page="{{ index }}">
             {{ index }}  
         </btn>
-       
     {% endfor %}    
-    
+    <btn class="btn page-link next-page page-link 
+        {{ button_class|default('btn-sm') }}
+        {{ (paginator.current_page == paginator.last_page) ? 'hidden' : '' }}"
+        page="next">
+        {{ component('icons~chevron.right',{ size: icon_size },'svg') }}
+    </btn>
     <btn 
         class="btn page-link last-page
         {{ button_class|default('btn-sm') }} 
-        {{ (paginator.current_page == paginator.last_page) ? 'disabled' : '' }}
+        {{ (paginator.current_page == paginator.last_page) ? 'hidden' : '' }}
         {{ (paginator.current_page == paginator.last_page) ? 'btn-active' : '' }}"
         page="{{ paginator.last_page }}">
-        »
+        {{ component('icons~chevron.double.right',{ size: icon_size },'svg') }}
     </btn>   
 </div>

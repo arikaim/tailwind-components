@@ -60,19 +60,19 @@ arikaim.component.onLoaded(function(component) {
         $('.page-' + page).addClass('btn-active');    
         
         if (page == 1) {                 
-            $('.first-page').addClass('disabled');
-            $('.prev-page').addClass('disabled');    
+            $('.first-page').addClass('hidden');
+            $('.prev-page').addClass('hidden');    
         } else {           
-            $('.first-page').removeClass('disabled');
-            $('.prev-page').removeClass('disabled');              
+            $('.first-page').removeClass('hidden');
+            $('.prev-page').removeClass('hidden');              
         }
            
         if (page == lastPage) {          
-            $('.next-page').addClass('disabled');
-            $('.last-page').addClass('disabled');          
+            $('.next-page').addClass('hidden');
+            $('.last-page').addClass('hidden');          
         } else {
-            $('.next-page').removeClass('disabled'); 
-            $('.last-page').removeClass('disabled'); 
+            $('.next-page').removeClass('hidden'); 
+            $('.last-page').removeClass('hidden'); 
         } 
     };
 
