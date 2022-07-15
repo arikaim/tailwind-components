@@ -2,12 +2,12 @@
 {% set button_icon = button_icon|default({ size: 'h-4 w-4' }) %}
 <div class="navbar pdf-view-navbar {{ navbar_class|default('bg-stone-100') }}"> 
     <div class="flex-grow pdf-view-title">
-        <div class="text-md font-semibold">
+        <div class="text-sm font-semibold">
             {{ title }}
             <span id="pdf_view_file">{{ file_name }}</span>
         </div>              
     </div>
-    <div class="place-content-end" id="pdf_view_page">
+    <div class="place-content-end text-sm" id="pdf_view_page">
         <span class="font-bold">{{ labels.page }}</span>      
         <div classs="page-panel hidden">
             <span class="pdf-view-page pl-1"></span>
@@ -19,9 +19,7 @@
 <div id="pdf_view_content" class="relative {{ class|default('p-1 w-full h-full') }}">
     <canvas 
         id="pdf_view_canvas" 
-        class="pdf-view-canvas {{ cnavas_class }}" 
-        width="{{ width|default('100%') }}" 
-        height="{{ height|default('100%') }}">
+        class="pdf-view-canvas {{ canvas_class|default('h-full w-full') }}">
     </canvas>
     <div class="w-full h-full pdf-view-loader hidden">
         <div class="animate-spin absolute top-1/2 right-1/2 left-1/2 border-top rounded-full border-0 border-t-4 border-blue-500 border-solid h-4 w-4">
@@ -45,8 +43,8 @@
     </div> 
     <div class="px-2 flex flex-row items-center flex-grow place-content-end">
         <div>
-            <span class="font-bold">{{ labels.zoom }}</span>
-            <span class="pdf-view-page-zoom pl-2 pr-2"></span>
+            <span class="font-bold text-sm">{{ labels.zoom }}</span>
+            <span class="pdf-view-page-zoom text-sm pl-2 pr-2"></span>
         </div>
         <div class="btn-group">
             <button class="btn {{ button_class }} pdf-view-zoom-plus" data-tip="{{ labels.plus }}">
