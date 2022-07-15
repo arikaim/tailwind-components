@@ -1,4 +1,4 @@
-{% set button_class = button_class|default('btn-outline btn-primary') %}
+{% set button_class = button_class|default('btn-outline btn-primary btn-xs') %}
 {% set button_icon = button_icon|default({ size: 'h-4 w-4' }) %}
 <div class="navbar pdf-view-navbar {{ navbar_class|default('bg-stone-100') }}"> 
     <div class="flex-grow pdf-view-title">
@@ -30,16 +30,16 @@
 </div>
 <div class="pdf-footer mt-1 flex flex-row items-center">     
     <div class="btn-group">
-        <button class="btn btn-sm {{ button_class }} pdf-view-first-page tooltip" data-tip="{{ labels.first }}">
+        <button class="btn {{ button_class }} pdf-view-first-page tooltip" data-tip="{{ labels.first }}">
             {{ component('icons~chevron.double.left',button_icon,'svg') }}  
         </button>         
-        <button class="btn btn-sm {{ button_class }} pdf-view-prev-page tooltip" data-tip="{{ labels.prev }}">
+        <button class="btn {{ button_class }} pdf-view-prev-page tooltip" data-tip="{{ labels.prev }}">
             {{ component('icons~chevron.left',button_icon,'svg') }}  
         </button>
-        <button class="btn btn-sm {{ button_class }} pdf-view-next-page tooltip" data-tip="{{ labels.next }}">
+        <button class="btn {{ button_class }} pdf-view-next-page tooltip" data-tip="{{ labels.next }}">
             {{ component('icons~chevron.right',button_icon,'svg') }}  
         </button>
-        <button class="btn btn-sm {{ button_class }} pdf-view-last-page tooltip" data-tip="{{ labels.last }}">
+        <button class="btn {{ button_class }} pdf-view-last-page tooltip" data-tip="{{ labels.last }}">
             {{ component('icons~chevron.double.right',button_icon,'svg') }}  
         </button>  
     </div> 
@@ -49,10 +49,10 @@
             <span class="pdf-view-page-zoom pl-2 pr-2"></span>
         </div>
         <div class="btn-group">
-            <button class="btn btn-sm {{ button_class }} pdf-view-zoom-plus" data-tip="{{ labels.plus }}">
+            <button class="btn {{ button_class }} pdf-view-zoom-plus" data-tip="{{ labels.plus }}">
                 {{ component('icons~zoom.in',button_icon,'svg') }}      
             </button>         
-            <button class="btn btn-sm {{ button_class }} pdf-view-zoom-minus" data-tip="{{ labels.minus }}">            
+            <button class="btn {{ button_class }} pdf-view-zoom-minus" data-tip="{{ labels.minus }}">            
                 {{ component('icons~zoom.out',button_icon,'svg') }} 
             </button>
         </div>
