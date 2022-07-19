@@ -2,9 +2,17 @@
 
 arikaim.component.onLoaded(function(component) { 
 
+    component.isDark = function() {
+        if (isObject(localStorage) == true) {
+            return (localStorage.theme == 'dark');
+        }
+
+        return $(element).prop('checked');
+    };
+
     component.setDarkMode = function() {
         document.documentElement.classList.add('dark');
-        this.set('mode','dark');
+        component.set('mode','dark');
         if (isObject(localStorage) == true) {
             localStorage.theme = 'dark';
         }
@@ -13,7 +21,7 @@ arikaim.component.onLoaded(function(component) {
 
     component.setLightMode = function() {
         document.documentElement.classList.remove('dark');
-        this.set('mode','light');
+        component.set('mode','light');
         if (isObject(localStorage) == true) {
             localStorage.theme = 'light';
         }
@@ -22,7 +30,7 @@ arikaim.component.onLoaded(function(component) {
     };
 
     component.init = function() {
-        
+    
         arikaim.ui.button($(component.getElement()),function(element) {
             var checked = $(element).prop('checked');          
             if (checked == true) {
@@ -34,17 +42,21 @@ arikaim.component.onLoaded(function(component) {
        
         if (isObject(localStorage) == true) {
             if (localStorage.theme === 'dark') {
-                this.setDarkMode();
+                component.setDarkMode();
                 return;
             }
         }
 
         if (window.matchMedia('(prefers-color-scheme: dark)').matches == true) {
-            this.setDarkMode();
+            component.setDarkMode();
             return;
         }
-        
-        component.setLightMode();
+     
+        if (component.get('mode') == 'dark') {
+            component.setDarkMode();
+        } else {
+            component.setLightMode();
+        }      
     };
 
     // init

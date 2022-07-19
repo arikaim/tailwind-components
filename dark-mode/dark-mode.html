@@ -5,6 +5,7 @@
     <input 
         id="{{ component_id|default('dark-mode') }}"
         mode="{{ mode|default('light') }}"
+        {{ (mode == 'dark') ? 'checked' : '' }}
         type="checkbox" />
     {{  component('icons~sun',{ 
             color: color, 
