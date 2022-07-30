@@ -1,0 +1,16 @@
+{
+    "items": {
+        "none": {
+            "title": "None"
+        },
+        "underline": {
+            "title": "Underline"
+        },
+        "overline": {
+            "title": "Overline"
+        }
+    },
+    "labels": {
+        "select": "Select"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "items": {
+        "text-left": {
+            "icon": "material-icons~text.left-align",
+            "title": "Left"
+        },
+        "text-center": {
+            "icon": "material-icons~text.center-align",
+            "title": "Center"
+        },
+        "text-right": {
+            "icon": "material-icons~text.right-align",
+            "title": "Right"
+        },
+        "text-justify": {
+            "icon": "material-icons~text.justify-align",
+            "title": "Justify"
+        }
+    },
+    "labels": {
+        "select": "Select"
+    }
+}

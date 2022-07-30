@@ -1,0 +1,16 @@
+{
+    "items": {
+        "font-light": {
+            "title": "Light"
+        },
+        "font-normal": {
+            "title": "Normal"
+        },
+        "font-bold": {
+            "title": "Bold"
+        }
+    },
+    "labels": {
+        "select": "Select"
+    }
+}

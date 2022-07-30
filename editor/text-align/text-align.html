@@ -1,0 +1,38 @@
+<div
+    id="{{ component_id }}"
+    selected="{{ selected }}"
+    class="dropdown {{ class }}">
+    <label tabindex="0" 
+        class="text-align-button
+        {{ button_class|default('btn btn-xs btn-ghost') }} 
+        {{ butotn_space|default('gap-4') }}
+        {{ size|default('w-32') }}
+        {{ button_border|default('border border-stone-300 border-solid') }}">
+        {% if items[selected].icon is not empty %}
+            <span class="selected-item-icon">
+                {{ component(items[selected].icon,{ color: 'text-gray-800',size: 'w-4 h-4' },'svg') }}
+            </span>
+        {% endif %}
+        <span class="selected-item-title">
+            {{ items[selected].title|default(labels.select) }}
+        </span>        
+    </label>
+    <ul tabindex="0" 
+        class="dropdown-content p-1 menu mt-1
+            {{ size|default('w-32') }}
+            {{ menu_color|default('shadow bg-gray-50') }}
+            {{ menu_border|default('rounded-box border border-stone-200 border-solid') }}">
+        {% for key, item in items %}
+            <li>              
+                <a class="p-1 px-2 text-align-item" value="{{ key }}">
+                    <span class="item-icon">
+                        {{ component(item.icon,{ color: 'text-gray-800',size: 'w-4 h-4' },'svg') }}
+                    </span>
+                    <span class="item-title">
+                        {{ item.title }}
+                    </span>                                      
+                </a>
+            </li>
+        {% endfor %}    
+    </ul>
+</div>
