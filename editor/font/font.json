@@ -1,0 +1,31 @@
+{
+    "items": {
+        "font-roboto": {
+            "url": "https://fonts.googleapis.com/css2?family=Roboto:italic,wght@0,100;0,300;0,400;0,700;1,300;1,500&display=swap",
+            "title": "Roboto",
+            "name": "Roboto",
+            "family": "Roboto:italic,100,300,400,700"
+        },
+        "font-lato": {
+            "url": "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;0,700;1,100&display=swap",
+            "title": "Lato",
+            "name": "Lato",
+            "family": "Lato:italic,100,400,700,900"
+        },
+        "font-square-peg": {
+            "url": "https://fonts.googleapis.com/css2?family=Square+Peg&display=swap",
+            "title": "Square Peg",
+            "name": "Square Peg",
+            "family": "Square Peg"
+        },
+        "font-noto-serif": {
+            "url": "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+            "title": "Noto Serif",
+            "name": "Noto Serif",
+            "family": "Noto Serif:italic,400,700"
+        }
+    },
+    "labels": {
+        "select": "Select Font"
+    }
+}

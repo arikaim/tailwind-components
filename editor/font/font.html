@@ -1,0 +1,38 @@
+{% set icon = icon|default('material-icons~font') %}
+<div
+    id="{{ component_id }}"
+    selected="{{ selected }}"
+    class="dropdown {{ class }}">
+    <label tabindex="0" 
+        class=" text-align-button
+        {{ button_class|default('btn btn-xs btn-ghost') }} 
+        {{ button_space|default('gap-4') }}
+        {{ size|default('w-full') }}
+        {{ button_border|default('border border-stone-300 border-solid') }}">
+        {% if icon is not empty %}
+            {{ component(icon,{ size: 'h-6 w-6', color: icon_color|default('text-gray-700') },'svg') }}
+        {% endif %}
+        <span class="selected-item-title {{ selected }}">
+            {{ items[selected].title|default(labels.select) }}
+        </span>        
+    </label>
+    <ul tabindex="0" 
+        class="dropdown-content p-1 menu mt-1
+            {{ size|default('w-32') }}
+            {{ menu_color|default('shadow bg-gray-50') }}
+            {{ menu_border|default('rounded-box border border-stone-200 border-solid') }}">
+        {% for key, item in items %}
+            <li>              
+                <a 
+                    class="p-1 px-2 font-item" 
+                    value="{{ key }}" 
+                    name="{{ item.name }}"
+                    family="{{ item.family }}">                    
+                    <span class="item-title {{ key }}">
+                        {{ item.title }}
+                    </span>                                      
+                </a>
+            </li>
+        {% endfor %}    
+    </ul>
+</div>
