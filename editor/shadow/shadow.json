@@ -1,0 +1,28 @@
+{
+    "items": {
+        "": {
+            "title": "None"
+        },
+        "shadow-sm": {
+            "title": "Small"
+        },
+        "shadow": {
+            "title": "Normal"
+        },
+        "shadow-md": {
+            "title": "Medium"
+        },
+        "shadow-lg": {
+            "title": "Large"
+        },
+        "shadow-xl": {
+            "title": "Extra Large"
+        },
+        "shadow-2xl": {
+            "title": "2x Large"
+        }
+    },
+    "labels": {
+        "select": "Select Shadow"
+    }
+}

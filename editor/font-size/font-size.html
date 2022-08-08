@@ -1,16 +1,22 @@
+{% set icon = icon|default('material-icons~font.size') %}
 <div
     id="{{ component_id }}"
     selected="{{ selected }}"
-    class="dropdown {{ class }}">
+    class="dropdown {{ class }} {{ size|default('w-full h-full') }}">
     <label tabindex="0" 
         class="text-align-button
         {{ button_class|default('btn btn-xs btn-ghost') }} 
         {{ butotn_space|default('gap-4') }}
-        {{ size|default('w-full') }}
+        {{ size|default('w-full h-full') }}
         {{ button_border|default('border border-stone-300 border-solid') }}">
-        <span class="selected-item-title {{ selected }}">
-            {{ items[selected].title|default(labels.select) }}
-        </span>        
+        <div class="flex flex-row items-center w-full">
+            {% if icon is not empty %}
+                {{ component(icon,{ size: 'h-6 w-6', color: icon_color|default('text-gray-700') },'svg') }}
+            {% endif %}
+            <div class="flex-grow selected-item-title {{ selected }}">
+                {{ items[selected].title|default(labels.select) }}
+            </div>  
+        </div>              
     </label>
     <ul tabindex="0" 
         class="dropdown-content p-1 menu mt-1
@@ -19,7 +25,7 @@
             {{ menu_border|default('rounded-box border border-stone-200 border-solid') }}">
         {% for key, item in items %}
             <li>              
-                <a class="p-1 px-2 font-weight-item" value="{{ key }}">                    
+                <a class="p-1 px-2 font-size-item" value="{{ key }}">                    
                     <span class="item-title {{ key }}">
                         {{ item.title }}
                     </span>                                      

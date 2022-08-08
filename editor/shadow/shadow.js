@@ -4,14 +4,9 @@ arikaim.component.onLoaded(function(component) {
 
     component.select = function(element) {
         var selected = $(element).attr('value');
-        var url = $(element).attr('url');
-        var family = $(element).attr('family');
         document.activeElement.blur();
-        
         $(component.getElement()).find('.selected-item-title').removeClass(component.get('selected'));   
         component.set('selected',selected);
-        component.set('family',family);
-        component.set('url',url);
 
         var title = $(element).find('.item-title').html().trim();
         $(component.getElement()).find('.selected-item-title').html(title);   
@@ -19,20 +14,7 @@ arikaim.component.onLoaded(function(component) {
     };
 
     component.init = function() {
-        var menuItems = $(component.getElement()).find('.font-item');
-        var families = [];
-
-        $(menuItems).each(function() {
-            var family = $(this).attr('family');
-            families.push(family);
-        });
-
-        WebFont.load({
-            google: {
-              families: families
-            }
-        });
-
+        var menuItems = $(component.getElement()).find('.shadow-item');
         $(menuItems).on('click',function() {
             component.select(this);
         });

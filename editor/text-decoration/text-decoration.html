@@ -6,7 +6,7 @@
         class="text-align-button
         {{ button_class|default('btn btn-xs btn-ghost') }} 
         {{ butotn_space|default('gap-4') }}
-        {{ size|default('w-32') }}
+        {{ size|default('w-full') }}
         {{ button_border|default('border border-stone-300 border-solid') }}">
         <span class="selected-item-title {{ selected }}">
             {{ items[selected].title|default(labels.select) }}
@@ -14,7 +14,7 @@
     </label>
     <ul tabindex="0" 
         class="dropdown-content p-1 menu mt-1
-            {{ size|default('w-32') }}
+            {{ size|default('w-full') }}
             {{ menu_color|default('shadow bg-gray-50') }}
             {{ menu_border|default('rounded-box border border-stone-200 border-solid') }}">
         {% for key, item in items %}

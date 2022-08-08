@@ -1,0 +1,31 @@
+{
+    "items": {
+        "text-sm": {
+            "title": "Small"
+        },
+        "text-base": {
+            "title": "Base"
+        },
+        "text-lg": {
+            "title": "Large"
+        },
+        "text-xl": {
+            "title": "Extra Large"
+        },
+        "text-2xl": {
+            "title": "2x Large"
+        },
+        "text-3xl": {
+            "title": "3x Large"
+        },
+        "text-4xl": {
+            "title": "4x Large"
+        },
+        "text-5xl": {
+            "title": "5x Large"
+        }
+    },
+    "labels": {
+        "select": "Select"
+    }
+}

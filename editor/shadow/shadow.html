@@ -1,14 +1,12 @@
-{% set icon = icon|default('material-icons~font') %}
+{% set icon = icon|default('material-icons~shape.square') %}
 <div
     id="{{ component_id }}"
     selected="{{ selected }}"
-    url="{{ url }}"
-    family="{{ family }}"
     class="dropdown {{ class }} {{ size|default('w-full h-full') }}">
     <label tabindex="0" 
-        class=" text-align-button
+        class="text-align-button
         {{ button_class|default('btn btn-xs btn-ghost') }} 
-        {{ button_space|default('gap-4') }}
+        {{ butotn_space|default('gap-4') }}
         {{ size|default('w-full h-full') }}
         {{ button_border|default('border border-stone-300 border-solid') }}">
         <div class="flex flex-row items-center w-full">
@@ -17,8 +15,8 @@
             {% endif %}
             <div class="flex-grow selected-item-title {{ selected }}">
                 {{ items[selected].title|default(labels.select) }}
-            </div>        
-        </div>
+            </div>  
+        </div>              
     </label>
     <ul tabindex="0" 
         class="dropdown-content p-1 menu mt-1
@@ -26,16 +24,11 @@
             {{ menu_color|default('shadow bg-gray-50') }}
             {{ menu_border|default('rounded-box border border-stone-200 border-solid') }}">
         {% for key, item in items %}
-            <li>              
-                <a 
-                    class="p-1 px-2 font-item" 
-                    value="{{ key }}" 
-                    url="{{ item.url }}"
-                    name="{{ item.name }}"
-                    family="{{ item.family }}">                    
-                    <span class="item-title {{ key }}">
+            <li class="py-2">              
+                <a class="p-1 px-2 shadow-item" value="{{ key }}">                    
+                    <div class="p-2 w-full item-title {{ key }}">
                         {{ item.title }}
-                    </span>                                      
+                    </div>                                      
                 </a>
             </li>
         {% endfor %}    
