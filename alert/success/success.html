@@ -1,0 +1,17 @@
+<div 
+    class="flex flex-row items-center 
+        {{ theme.alert.success|default('p-4 text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800') }}" 
+    role="alert">
+    {{  component(icon.name|default('icons~check'),{ 
+            size: icon.size|default('w-6 h-6'), 
+            color: icon.color|default('text-green-600'), 
+            class: icon.class 
+        },'svg')
+    }}  
+    <div class="px-2 {{ title_class|default('font-semibold') }}">
+        {{ title }}
+    </div> 
+    <div class="px-2 {{ details_class }}">
+        {{ details }}
+    </div>
+</div>

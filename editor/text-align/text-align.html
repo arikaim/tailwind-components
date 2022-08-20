@@ -1,7 +1,7 @@
 <div
     id="{{ component_id }}"
     selected="{{ selected }}"
-    class="dropdown {{ class }}">
+    class="dropdown {{ class }} {{ size|default('w-full h-full') }}">
     <label tabindex="0" 
         class="text-align-button
         {{ button_class|default('btn btn-xs btn-ghost') }} 
