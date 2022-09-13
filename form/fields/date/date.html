@@ -1,0 +1,20 @@
+<div class="relative {{ class }}">
+    <div class="flex absolute inset-y-0 left-0 items-center pl-2 pointer-events-none">
+        {{  component(icon|default('icons~calendar'),{ 
+                size: icon_size|default('h-6 w-6'), 
+                color: icon_color|default('text-grray-800') 
+            },'svg') 
+        }}      
+    </div>   
+    <input
+        detepicker
+        id="{{ component_id }}" 
+        type="text" 
+        detepicker-title="{{ title }}"
+        autohide="{{ autohide|default('false') }}"
+        calendarWeeks="{{ calendarWeeks|default('false') }}"
+        date-format="{{ format|default("mm/dd/yyyy") }}"
+        orientation="{{ orientation|default('bottom') }}"
+        class="pl-10 {{ input_class|default('input input-bordered input-info input-sm') }}" 
+        placeholder="{{ placeholder }}">
+</div>
