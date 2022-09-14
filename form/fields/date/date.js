@@ -16,8 +16,15 @@ arikaim.component.onLoaded(function(component) {
             calendarWeeks: component.get('calendarWeeks',false),
             format: component.get('date-format'),
             orientation: component.get('orientation'),
+            todayBtn: component.get('todayBtn'),
+            clearBtn: component.get('clearBtn'),
             title: component.get('detepicker-title')         
         });
+
+        var value = $(component.getElement()).val().trim();
+        if (isEmpty(value) == false) {
+            datepicker.setDate(value)
+        }
 
         component.setVar('datepicker',datepicker);
     };

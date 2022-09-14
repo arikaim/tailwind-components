@@ -8,6 +8,10 @@
     </div>   
     <input
         detepicker
+        value="{{ value }}"
+        {{ rule|attr('rule') }}
+        todayBtn="{{ todayButton|default('false') }}"
+        clearBtn="{{ clearButton|default('false') }}"
         detepicker-title="{{ title }}"
         autohide="{{ autohide|default('false') }}"
         calendarWeeks="{{ calendarWeeks|default('false') }}"
