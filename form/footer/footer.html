@@ -1,4 +1,4 @@
-<div class="{{ class|default('mt-8') }}">
+<div class="{{ class|default('mt-4') }}">
     <div class="flex flex-row">
         <button 
             loading-class="{{ loading_class|default('loading') }}"
@@ -21,7 +21,7 @@
         </div>
         {% endif %}
     </div>   
-    <div class="{{ message.class|default('h-12 mt-4') }}">       
+    <div class="{{ message.class|default('h-24 mt-4') }}">       
         <div         
             {{ message_error_id|attr('id') }}
             class="errors error invisible message error-message {{ message.error|default('p-2 text-red-400 font-bold') }}">           

@@ -3,7 +3,7 @@
 arikaim.component.onLoaded(function(component) {
 
     component.getTimestamp = function() {
-        return component.getVar('datepicker').getDate().getTime();
+        return (component.getVar('datepicker').getDate().getTime() / 1000);
     }
 
     component.getDatepicker = function() {
