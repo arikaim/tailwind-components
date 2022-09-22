@@ -1,0 +1,58 @@
+{% set selected = selected|trim %}
+{% set selected_parts = selected|split(' ') %}
+{% set direction = direction|default(selected_parts[0])|default('gradient-to-r') %}
+{% set direction = (directions[direction] is not iterable) ? 'gradient-to-r' : direction %}
+{% set from_color = from_color|default(selected_parts[1]) %}
+{% set from_color = from_color|replace({'from-': ''}) %}
+{% set via_color = via_color|default(selected_parts[2])|replace({'via-': ''})  %}
+{% set to_color = to_color|default(selected_parts[3])|replace({'to-': ''}) %}
+<div 
+    id="{{ component_id }}"  
+    selected="{{ selected }}"
+    direction="{{ direction }}"
+    from-color="{{ from_color }}"
+    parent-id="{{ parent_id }}"
+    via-color="{{ via_color }}"
+    to-color="{{ to_color }}"
+    class="{{ size|default('p-2 w-96 xs:w-72 md:w-96') }}">
+    <div class="flex flex-row items-center w-full">
+        <div class="w-1/3 flex items-center">
+            <div class="font-semibold px-2">
+                {{ labels.from }}
+            </div>        
+            {{ component('tailwind~color',{ color_only: true, id: component_id ~ '_from_color', selected: from_color  }) }}
+        </div>
+        <div class="w-1/3 flex items-center self-center place-content-center">
+            <div class="font-semibold px-2">
+                {{ labels.via }}
+            </div>
+            {{ component('tailwind~color',{ color_only: true, id: component_id ~ '_via_color', selected: via_color }) }}
+        </div>
+        <div class="w-1/3 flex items-center self-end place-content-end">
+            <div class="font-semibold px-2">
+                {{ labels.to }}
+            </div>
+            {{ component('tailwind~color',{ color_only: true, id: component_id ~ '_to_color', selected: to_color }) }}
+        </div>
+    </div> 
+    {% if hide_sample != true %}
+    <gradientSample class="block my-4 rounded-lg w-full h-8 gradient-color-sample 
+        bg-{{ direction }} from-{{ from_color }} via-{{ via_color }} to-{{ to_color }}">&nbsp;              
+    </gradientSample>
+    {% endif %}
+    <div class="my-2">
+        <div class="font-semibold px-2">
+            {{ labels.direction }}
+        </div>
+        <div>
+            {{  component('tailwind~dropdown',{ 
+                    items: directions, 
+                    selected: direction, 
+                    id: component_id ~ '_directions'
+                }) 
+            }}           
+        </div>
+    </div>
+    <div class="my-4">        
+    </div>
+</div>

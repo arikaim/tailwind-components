@@ -1,11 +1,12 @@
-{% set selcted_bg = colors[selected].bg %}
+{% set selcted_bg = (colors[selected].bg is empty) ? 'bg-' ~ selected : colors[selected].bg %}
 {% set selected_color = colors[selected] %}
 {% set selected = (data_type is not empty) ? selected_color[data_type] : selected %}
 <colorPicker
     id="{{ component_id }}"
     selected="{{ selected }}"
-    background="{{ colors[selected].bg }}"
+    background="{{ selcted_bg }}"
     dateType="{{ data_type }}"
+    hideOnBlur="{{ hide_on_blur|default('true') }}"
     class="color-picker relative inline-flex flex-col items-start {{ class }}">
     <selected 
         class="inline-block h-10 w-10 color-pick-button cursor-pointer transition-colors duration-700  
@@ -19,39 +20,51 @@
             name="{{ field_name|default('color') }}" 
             type="hidden" 
             value="{{ selected }}">                            
-    </selected>
+    </selected>    
     <menu 
-        class="hidden z-50 mt-12 top-0 absolute left-0
+        class="z-50 mt-12 top-0 absolute left-0 hidden
         {{ menu_color|default('bg-white') }}
         {{ menu_border|default('rounded-xl border border-gray-200 border-solid shadow-md') }}
-        {{ menu_class }}"> 
-        <div class="flex flex-grow flex-row justify-end w-full p-1 px-3">
-            {{  component('icons~close',{ 
-                    class: 'color-picker-close',
-                    color: 'cursor-pointer transition-colors duration-700 hover:text-red-500',
-                    size: 'w-7 h-7' 
-                },'svg') 
-            }} 
-        </div>            
-        <div
-            class="px-4 py-1
-            {{ grid|default('tailwind-grid auto-cols-auto justify-items-stretch xs:grid-cols-6 md:grid-cols-10 grid-cols-10 gap-2 justify-center place-content-center')  }}
-            {{ size|default('p-2 w-96 xs:w-72 md:w-96') }}">
-                       
-            {% for key, item in colors %}
-                {% set value = (data_type is empty) ? key : item[data_type] %}            
-                <color 
-                    title="{{ item.title }}"
-                    color-name="{{ key }}"           
-                    value="{{ value }}" 
-                    bg-color="{{ item.bg }}"               
-                    selected-class="border-green-500"
-                    class="{{ item.bg }} h-8 w-8 color-item cursor-pointer inline-block transition-colors duration-700
-                    rounded-xl border-2 border-gray-300 border-solid
-                    {{ item_color_class }}
-                    {{ item_color_hover|default('hover:border-green-500 hover:shadow-2xl') }}">                             
-                </color>
-            {% endfor %}   
-        </div>            
+        {{ menu_class }}">     
+        <div class="flex flex-row w-full p-1 px-3">
+            <div class="flex-grow">
+                {% if use_gradient == true %}   
+                <div class="btn-group m-1 btn-group-horizontal color-type-buttons">
+                    <input value="color" 
+                        class="btn btn-xs btn-outline btn-primary gradient-button" 
+                        type="radio" 
+                        name="gradient" 
+                        data-title="{{ labels.color }}" checked />
+                    <input value="gradient" 
+                        class="btn btn-xs btn-outline btn-primary gradient-button" 
+                        type="radio" 
+                        name="gradient" 
+                        data-title="{{ labels.gradient }}" />                
+                </div>   
+                {% endif %}
+            </div>
+            <div class="justify-end">
+                {{  component('icons~close',{ 
+                        class: 'color-picker-close',
+                        color: 'cursor-pointer transition-colors duration-700 hover:text-red-500',
+                        size: 'w-7 h-7' 
+                    },'svg') 
+                }} 
+            </div>           
+        </div>   
+        <div class="px-4 py-1 color-content">
+            {{ component('tailwind~color.menu',{}) }}
+        </div>       
+        {% if use_gradient == true %}    
+        <div class="px-4 py-1 gradient-content hidden">
+            {{  component('tailwind~color.gradient',{ 
+                    id: 'gradient_' ~ component_id, 
+                    selected: selected,
+                    hide_sample: hide_sample,
+                    parent_id: component_id 
+                }) 
+            }}
+        </div>
+        {% endif %}
     </menu>
 </colorPicker>

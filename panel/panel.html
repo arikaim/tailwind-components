@@ -1,0 +1,16 @@
+<div
+    id="{{ component_id }}"
+
+    class="{{ theme.panel.class|default('class') }}">
+    {{  component('tailwind~panel.title',{ 
+            title: title, 
+            icon: icon,
+            close_icon: close_icon,
+            hide_close: hide_close, 
+            class: title_class 
+        }) 
+    }}
+    <div class="panel-content {{ theme.panel.content|default('content_class') }}">
+        {{ content }}
+    </div>
+</div>

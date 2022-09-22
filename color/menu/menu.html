@@ -1,0 +1,18 @@
+<div class="colors-menu {{ grid|default('tailwind-grid auto-cols-auto justify-items-stretch xs:grid-cols-6 md:grid-cols-10 grid-cols-10 gap-2 justify-center place-content-center')  }}
+    {{ size|default('p-2 w-96 xs:w-72 md:w-96') }}">
+            
+{% for key, item in colors %}
+    {% set value = (data_type is empty) ? key : item[data_type] %}            
+    <color 
+        title="{{ item.title }}"
+        color-name="{{ key }}"           
+        value="{{ value }}" 
+        bg-color="{{ item.bg }}"               
+        selected-class="border-green-500"
+        class="{{ item.bg }} h-8 w-8 color-item cursor-pointer inline-block transition-colors duration-700
+        rounded-xl border-2 border-gray-300 border-solid
+        {{ item_color_class }}
+        {{ item_color_hover|default('hover:border-green-500 hover:shadow-2xl') }}">                             
+    </color>
+{% endfor %}   
+</div>  

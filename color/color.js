@@ -3,7 +3,7 @@
 arikaim.component.onLoaded(function(component) {
 
     component.getButton = function() {
-        return $(component.getElement()).find('.color-pick-button');
+        return $(component.getElement()).children('.color-pick-button')[0];
     }
 
     component.select = function(element) {
@@ -20,39 +20,70 @@ arikaim.component.onLoaded(function(component) {
         $(this.getButton()).removeClass(background).addClass(bgColor);
 
         component.set('background',bgColor);
-        $(component.getElement()).find('input').val(color);      
+        var input = $(component.getElement()).find('input')[0];
+        $(input).val(color);      
         // set prop
         component.set('selected',color);
     };
 
     component.toggleMenu = function() {
-        var menu = $(component.getElement()).find('menu');      
+        var menu = $(component.getElement()).find('menu')[0];  
         if ($(menu).is(":visible") == true) {
-            menu.fadeOut(500);
+            $(menu).fadeOut(500);
         } else {
-            menu.fadeIn(500);
+            $(menu).fadeIn(500);
         }    
     };
 
     component.hideMenu = function() {
-        $(component.getElement()).find('menu').fadeOut(500);                            
+        var menu = $(component.getElement()).find('menu')[0];
+        $(menu).fadeOut(500);                            
     };
 
     component.init = function() {
-        $(component.getButton()).on('click',function(event) {       
+        var gradientButton = $(component.getElement()).find('.color-type-buttons');
+
+        arikaim.ui.button($(gradientButton).children('.gradient-button'),function(element) {
+            var type = $(element).val();
+            var gradientContent = $(component.getElement()).children('menu').children('.gradient-content')[0];
+            var colorContent = $(component.getElement()).children('menu').children('.color-content')[0];
+           
+            if (type == 'gradient') {
+                $(gradientContent).show();
+                $(colorContent).hide();
+            } else {
+                $(gradientContent).hide();
+                $(colorContent).show();
+            }
+        });
+
+        $(component.getButton()).off();
+        $(component.getButton()).on('click',function(event) {  
+            event.stopPropagation();     
             component.toggleMenu();
-        });    
-        $(component.getElement()).find('menu').on('mouseleave',function() { 
-            component.hideMenu();
-        });  
-        
-        var closeButton = $(component.getElement()).find('.color-picker-close');
-        $(closeButton).on('click',function() {
+        }); 
+           
+        if (component.get('hideOnBlur') == 'true') {
+            var menu = $(component.getElement()).find('menu')[0];
+            $(menu).off();
+            $(menu).on('mouseleave',function(event) { 
+                event.stopPropagation();
+                component.hideMenu();
+            });  
+        }
+       
+        var closeButton = $(component.getElement()).find('.color-picker-close')[0];
+        $(closeButton).off();
+        $(closeButton).on('click',function(event) {
+            event.stopPropagation();
             component.toggleMenu();
         });
 
-        var colors = $(component.getElement()).find('color');
-        $(colors).on('click',function() {
+        var colorsMenu = $(component.getElement()).find('.colors-menu')[0];
+        var colors = $(colorsMenu).children('color');
+        $(colors).off();
+        $(colors).on('click',function(event) {
+            event.stopPropagation();
             component.select(this);
         });
     };

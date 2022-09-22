@@ -7,11 +7,8 @@
     </div>    
     {% if hide_close != true %}
     <btn 
-        class="px-1 cursor-pointer panel-close-button tooltip tooltip-left" 
-        data-tip="{{ labels.close }}"
-        fade-out="{{ fade|default(500) }}"
-        content-id="{{ content_id|default('details_panel') }}">      
-        {{  component('icons~close.circle',{ 
+        class="px-1 cursor-pointer panel-close-button tooltip tooltip-left">  
+        {{  component(close_icon|default('icons~close.circle'),{ 
                 size: close_icon_size|default('h-6 w-6'),            
                 color: close_icon_color|default(theme.panel.close.color),       
                 class: close_icon_class|default(theme.panel.close.class)

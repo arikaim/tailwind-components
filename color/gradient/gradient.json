@@ -1,0 +1,47 @@
+{
+    "directions": {
+        "none": {
+            "title": "None",
+            "bg": "bg-none"
+        },
+        "gradient-to-t": {
+            "title": "Top",
+            "bg": "bg-gradient-to-t"
+        },
+        "gradient-to-tr": {
+            "title": "Top Right",
+            "bg": "bg-gradient-to-tr"
+        },
+        "gradient-to-r": {
+            "title": "Right",
+            "bg": "bg-gradient-to-r"
+        },
+        "gradient-to-br": {
+            "title": "Bottom Right",
+            "bg": "bg-gradient-to-br"
+        },
+        "gradient-to-b": {
+            "title": "Bottom",
+            "bg": "bg-gradient-to-b"
+        },
+        "gradient-to-bl": {
+            "title": "Bottom Left",
+            "bg": "bg-gradient-to-bl"
+        },
+        "gradient-to-l": {
+            "title": "Left",
+            "bg": "bg-gradient-to-l"
+        },
+        "gradient-to-tl": {
+            "title": "Top Left",
+            "bg": "bg-gradient-to-tl"
+        }
+    },
+    "labels": {
+        "direction": "Direction",
+        "from": "From",
+        "via": "Via",
+        "to": "To",
+        "select": "Select"
+    }
+}
