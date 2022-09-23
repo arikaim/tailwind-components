@@ -53,7 +53,12 @@
             </div>           
         </div>   
         <div class="px-4 py-1 color-content">
-            {{ component('tailwind~color.menu',{}) }}
+            {{  component('tailwind~color.menu',{ 
+                    data_type: data_type,
+                    item_color_hover: item_color_hover,
+                    item_color_class: item_color_class
+                }) 
+            }}
         </div>       
         {% if use_gradient == true %}    
         <div class="px-4 py-1 gradient-content hidden">
