@@ -10,10 +10,10 @@
         {{ button_border|default('border border-stone-300 border-solid') }}">
         <div class="flex flex-row items-center w-full">
             {% if icon is not empty %}
-                {{ component(icon,{ size: 'h-6 w-6', color: icon_color|default('text-gray-700') },'svg') }}
+                {{ component(icon,{ size: icon_size|default('h-6 w-6'), color: icon_color|default('text-gray-700') },'svg') }}
             {% endif %}
             <div class="flex-grow selected-item-title {{ selected }}">
-                {{ items[selected].title|default(labels.select) }}
+                {{ items[selected].title|default(title) }}
             </div>  
         </div>              
     </label>
@@ -22,9 +22,18 @@
             {{ size|default('w-full') }}
             {{ menu_color|default('shadow bg-gray-50') }}
             {{ menu_border|default('rounded-box border border-stone-200 border-solid') }}">
+        {% if enable_all == true %}
+            <li>
+                <a class="p-1 px-2 dropdown-item {{ (selected is empty) ? 'active' : '' }}" value="">                    
+                    <span class="item-title">
+                        {{ labels.all }}
+                    </span>                                      
+                </a>
+            </li>
+        {% endif %}
         {% for key, item in items %}
-            <li>              
-                <a class="p-1 px-2 dropdown-item" value="{{ key }}">                    
+            <li>                              
+                <a class="p-1 px-2 dropdown-item {{ (key == selected) ? 'active' : '' }}" value="{{ key }}">                    
                     <span class="item-title {{ key }}">
                         {{ item.title }}
                     </span>                                      

@@ -1,0 +1,30 @@
+{% set selected_class = selected_class|default('border-green-500 rounded-lg border-2 border-solid') %}
+<div
+    id="{{ component_id }}"
+    selected="{{ selected }}"
+    selected-class="{{ selected_class }}"
+    class="{{ space|default('px-4 py-1') }}
+        {{ grid|default('tailwind-grid lg:grid-cols-8 grid-cols-8 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-2') }}
+        {{ align|default('justify-center place-content-center') }}">               
+    {% for key, item in items %}      
+        <item 
+            title="{{ item.title }}"                
+            value="{{ key }}"                                  
+            class="item cursor-pointer inline-block transition-colors duration-700 
+            {{ item_space }}
+            {{ item_size }}
+            {{ item_border|default('rounded-lg border-2 border-gray-300 border-solid') }}
+            {{ item_hover|default('hover:rounded-lg hover:border-solid hover:border-2 hover:border-green-500') }}
+            {{ item_class }}
+            {{ (key == selected) ? selected_class : '' }}">  
+            {% if item.icon is not empty %}                        
+                {{ component(item.icon,{ class: icon_class, size: icon_size|default('h-8 w-8') },'svg') }} 
+            {% endif %}
+            {% if hide_title != true %}
+            <div class="{{ item_class|default('font-bold') }}">
+                {{ item.title }}
+            </div>
+            {% endif %}
+        </item>
+    {% endfor %}   
+</div>      

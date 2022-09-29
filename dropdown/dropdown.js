@@ -10,11 +10,15 @@ arikaim.component.onLoaded(function(component) {
 
         var title = $(element).find('.item-title').html().trim();
         $(component.getElement()).find('.selected-item-title').html(title);   
-        $(component.getElement()).find('.selected-item-title').addClass(selected);      
+        $(component.getElement()).find('.selected-item-title').addClass(selected);     
+        
+        $(component.getElement()).find('.dropdown-item').removeClass('active'); 
+        $(element).addClass('active');
     };
 
     component.init = function() {
         var menuItems = $(component.getElement()).find('.dropdown-content').find('.dropdown-item');
+        $(menuItems).off();
         $(menuItems).on('click',function() {
             component.select(this);
         });
