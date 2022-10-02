@@ -1,7 +1,7 @@
 <div
     id="{{ component_id }}"
-
-    class="{{ theme.panel.class|default('class') }}">
+    class="{{ theme.panel.class|default(class) }}">
+    {% if hide_title != true %}
     {{  component('tailwind~panel.title',{ 
             title: title, 
             icon: icon,
@@ -10,7 +10,8 @@
             class: title_class 
         }) 
     }}
-    <div class="panel-content {{ theme.panel.content|default('content_class') }}">
+    {% endif %}
+    <div class="panel-content {{ theme.panel.content|default(panel_content_class) }}">
         {{ content }}
     </div>
 </div>

@@ -1,10 +1,15 @@
 'use strict';
 
 arikaim.component.onLoaded(function(component) {
-    arikaim.ui.button('.panel-close-button',function(element) {       
-        var contentId = $(element).attr('content-id');     
-        $('#' + contentId).fadeOut($(element).attr('fade-out'));      
-    });
+
+    component.init = function() {
+        var closeButtons = $(component.getElement()).find('.panel-close-button');
+        arikaim.ui.button(closeButtons,function(element) {     
+            $(component.getElement()).remove();  
+        });
+    };
+    
+    component.init();
 
     return component;
 });
