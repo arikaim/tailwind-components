@@ -1,0 +1,20 @@
+{% set class = class|default('') %}
+{% set type = type|default('field') %}
+{% set escape = escape|default(false) %}
+{% set hint = hint|default(labels.hint) %}
+<a 
+    class="block normal-case cursor-pointer link clipboard-copy tooltip {{ class }}" 
+    content-selector="{{ selector }}" 
+    content-type="{{ type }}" 
+    content-options="{{ options }}" 
+    focus-element="{{ focus_element }}"
+    data-tip="{{ hint }}"
+    escape-content="{{ escape }}">
+    {% if hide_icon != true %}
+        {{ component('icons~clipboard.copy',{ 
+                size: icon_size|default('h-6 w-6'), 
+                color: icon_color
+            },'svg') 
+        }}
+    {% endif %}
+</a>
