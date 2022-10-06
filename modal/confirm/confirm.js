@@ -10,6 +10,10 @@ arikaim.component.onLoaded(function(component) {
         $(this.getElement()).find('.modal-content').html(content);
     };
 
+    component.getContentElement = function() {
+        return $(this.getElement()).find('.modal-content');
+    };
+
     component.setTitle = function(title) {
         $(this.getElement()).find('.modal-title').html(title);
     };

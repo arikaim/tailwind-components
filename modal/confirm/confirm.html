@@ -14,11 +14,13 @@
         </p>
         <div class="modal-action {{ modal_action|default('p-2') }}">
             <label class="btn btn-sm btn-success modal-confirm-button">
-                {{ labels.confirm }}
+                {{ confirm_button|default(labels.confirm) }}
             </label>
+            {% if hide_cancel != true %}
             <label class="btn btn-sm btn-error modal-cancel-button">
-                {{ labels.cancel }}
+                {{ cancel_button|default(labels.cancel) }}
             </label>
+            {% endif %}
         </div>
     </div>
 </div>
