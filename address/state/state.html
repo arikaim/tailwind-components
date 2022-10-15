@@ -1,0 +1,25 @@
+{% set state = createModel('State','address') %}
+{% if selected is not empty %}
+    {% set item_selected = state.findById(selected) %}
+{% endif %}
+{% set items = state.countryQuery(coutry_code).orderBy('country_code').get() %}
+{% set data_field = data_field|default('uuid') %}
+<div 
+    id="{{ component_id }}"
+    class="ui search selection dropdown state-dropdown {{ class }}" 
+    {{ title|attr('title') }} 
+    data-field="{{ data_field }}">    
+    <input name="{{ name }}" type="hidden" value="{{ item_selected[data_field] }}">  
+    <div class="text">
+        {{ item_selected.name|default(labels.choose) }}
+    </div>  
+    <i class="icon dropdown"></i> 
+    <div class="menu">        
+        {% for item in items %}
+        <div class="item" data-value="{{ item[data_field] }}">  
+            <i class="{{ item.country_code|lower }} flag"></i>
+            {{ item.name }}
+        </div>   
+        {% endfor %}          
+    </div>
+</div>

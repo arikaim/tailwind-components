@@ -1,0 +1,112 @@
+<form class="ui form" id="address_form">  
+    <input type="hidden" name="uuid" id="uuid" value="{{ uuid }}">  
+    <input type="hidden" name="type" id="address_type" value="{{ type|default(address.type) }}"> 
+    {% if show_type == true %}
+    <div class="my-2">
+        <div class="badge">
+            {{ labels.type }}
+            <div class="detail">
+                {{ address.type }}
+            </div>
+        </div>
+    </div>   
+    {% endif %}   
+    {% if show_names == true %}
+    <div class="flex flex-row items-center">
+        <div class="form-control field">
+            <label>{{ fields.first_name.label }}</label>
+            <input 
+                {{ rules.first_name|attr('rule') }} 
+                name="first_name" id="first_name" 
+                {{ fields.first_name.placeholder|attr('placeholder') }} 
+                value="{{ address.first_name }}">
+        </div> 
+        <div class="field">
+            <label>{{ fields.last_name.label }}</label>
+            <input 
+                {{ rules.last_name|attr('rule') }} 
+                name="last_name" id="last_name" 
+                {{ fields.last_name.placeholder|attr('placeholder') }} 
+                value="{{ address.last_name }}">
+        </div>
+    </div>
+    {% endif %}
+    <div class="my-2 flex flex-row items-center">
+        <div class="form-control field">
+            <label class="font-semibold">{{ fields.country.label }}</label>
+            {{  component('tailwind~address.country',{ 
+                    selected: address.country_id, 
+                    data_field: 'id',   
+                    class: 'mini clearable',                
+                    name: 'country_id'
+                }) 
+            }} 
+        </div> 
+        <div class="pl-2 form-control field">
+            <label class="font-semibold">{{ fields.state.label }}</label>
+            {{  component('tailwind~address.state',{ 
+                    selected: address.state_id, 
+                    data_field: 'id',
+                    name: 'state_id',
+                    class: 'mini clearable' 
+                }) 
+            }} 
+        </div>
+    </div>
+<div class="my-2 flex flex-row items-center">
+    <div class="form-control field">
+        <label class="font-semibold">{{ fields.city.label }}</label>
+        <span class="{{ (address.custom_city is empty) ? '' : 'hidden' }}" id="city_input">
+            <div class="ui right action input">
+              
+                <a class="ui basic icon button add-custom-city" title="{{ buttons.city }}">
+                    <i class="icon green plus"></i>
+                </a>
+            </div>  
+        </span>
+        <span class="{{ (address.custom_city is empty) ? 'hidden' : '' }}" id="custom_city_input">
+            <div class="ui right action input">
+                <input type="text" name="custom_city" id="custom_city" value="{{ address.custom_city }}">
+                <a class="ui basic icon button cancel-custom-city" title="{{ buttons.cancel }}">
+                    <i class="icon orange times"></i>
+                </a>
+            </div>
+        </span>       
+    </div> 
+    <div class="field">
+        <label>{{ fields.zip.label }}</label>
+        <input name="zip_code" id="zip_code" {{ fields.zip.placeholder|attr('placeholder') }} value="{{ address.zip_code }}">
+    </div>
+</div>
+<div class="field required">
+    <label>{{ fields.address.label }}</label>
+    <input rule="empty" name="address" id="address" {{ fields.address.placeholder|attr('placeholder') }} value="{{ address.address }}">
+</div>  
+<div class="field">
+    <label>{{ fields.address2.label }}</label>
+    <input type="text" name="address_2" id="address_2" {{ fields.address2.placeholder|attr('placeholder') }} value="{{ address.address_2 }}">  
+</div>        
+<div class="two fields">
+    <div class="field">
+        <label>{{ fields.email.label }}</label>
+        <input rule="email" optional="true" name="email" id="email" {{ fields.email.placeholder|attr('placeholder') }} value="{{ address.email }}">
+    </div>
+    <div class="field">
+        <label>{{ fields.phone.label }}</label>
+        <input rule="integer" name="phone" id="phone" optional="true" {{ fields.phone.placeholder|attr('placeholder') }} value="{{ address.phone }}">
+    </div>
+</div>       
+{% if show_website == true %}
+<div class="two fields">
+    <div class="field">
+        <label>{{ fields.website.label }}</label>
+        <input rule="url" optional="true" name="website" id="website" {{ fields.website.placeholder|attr('placeholder') }} value="{{ address.website }}">
+    </div>
+    <div class="field">
+    </div>
+</div>
+{% endif %}
+
+
+    {{ component('tailwind~form.footer') }}   
+</form>

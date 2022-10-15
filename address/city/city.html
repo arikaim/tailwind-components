@@ -1,0 +1,25 @@
+{% set size = size|default(15) %}
+{% set city = createModel('City','address') %}
+{% if selected is not empty %}
+    {% set item_selected = city.findById(selected) %}
+{% endif %}
+{% set items = city.take(size).get() %}
+{% set data_field = data_field|default('uuid') %}
+
+<div class="ui search selection dropdown city-dropdown {{ class }}" 
+    {{ title|attr('title') }} 
+    data-field="{{ data_field }}"
+    id="{{ id|default('city_dropdown') }}">    
+    <input {{ rule|attr('rule') }} name="{{ name }}" type="hidden" value="{{ item_selected[data_field] }}">  
+    <div class="text">
+        {{ item_selected.name|default(labels.choose) }}
+    </div>  
+    <i class="icon dropdown"></i> 
+    <div class="menu">        
+        {% for item in items %}
+        <div class="item" data-value="{{ item[data_field] }}">  
+            {{ item.name }}
+        </div>   
+        {% endfor %}          
+    </div>
+</div>

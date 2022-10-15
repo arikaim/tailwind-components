@@ -1,0 +1,25 @@
+{% set country = createModel('Country','address') %}
+{% if selected is not empty %}
+    {% set item_selected = country.findCountry(selected) %}
+{% endif %}
+{% set items = country.get() %}
+{% set data_field = data_field|default('uuid') %}
+<div class="ui search selection dropdown country-dropdown {{ class }}" 
+    {{ title|attr('title') }} 
+    data-field="{{ data_field }}"
+    id="{{ id|default('country_dropdown') }}">    
+    <input {{ rule|attr('rule') }} name="{{ name }}" type="hidden" value="{{ item_selected[data_field] }}">  
+    <div class="text">
+        {{ item_selected.name|default(labels.choose) }}
+    </div>  
+    <i class="icon dropdown"></i> 
+    <div class="menu">        
+        {% for item in items %}            
+            <div class="item" data-value="{{ item[data_field] }}">  
+                <i class="{{ item.code|lower }} flag"></i> 
+                {{ item.name }}
+                {{ (show_phone_code == true) ? '+' ~ item.phone_code : '' }}
+            </div>   
+        {% endfor %}          
+    </div>
+</div>

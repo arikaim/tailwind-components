@@ -1,0 +1,54 @@
+{
+    "labels": {
+        "type": "Type"
+    },
+    "fields": {
+        "country": {
+            "label": "Country",
+            "placeholder": "Select Country"      
+        },
+        "state": {
+            "label": "State",
+            "placeholder": "Select State"      
+        },
+        "city": {
+            "label": "City",
+            "placeholder": "Select City"      
+        },
+        "zip": {
+            "label": "Zip code",
+            "placeholder": "Enter zip code"      
+        },
+        "address": {
+            "label": "Address",
+            "placeholder": "Enter address"      
+        },
+        "address2": {
+            "label": "Address 2",
+            "placeholder": "Enter address"      
+        },
+        "phone": {
+            "label": "Phone",
+            "placeholder": "Enter phone"      
+        },
+        "email": {
+            "label": "Email",
+            "placeholder": "Enter email"      
+        },  
+        "first_name": {
+            "label": "First Name",
+            "placeholder": "Enter First Name"      
+        },
+        "last_name": {
+            "label": "Last Name",
+            "placeholder": "Enter Last Name"      
+        },
+        "website": {
+            "label": "Website",
+            "placeholder": "Enter site url"      
+        }                    
+    },
+    "buttons": {
+        "city": "Add City"
+    }   
+}

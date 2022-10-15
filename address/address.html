@@ -1,0 +1,89 @@
+{% set text_class = text_class|default('text-gray-800 font-medium') %}
+{% set field_label = field_label|default('text-gray-400 text-xs') %}
+{% set field_space = field_space|default('pl-4') %}
+{% set row_class = row_class|default('py-2') %}
+<div class="{{ class|default('bg-stone-100 inline-block rounded-lg') }}">
+    {% if hide_title != true %}  
+    <div class="flex flex-row items-center {{ title_class|default('py-2 px-4') }}">
+        <div>
+            {{  component(icon|default('icons~address'),{ 
+                    size: 'h-4 w-4', 
+                    color: icon_color|default('text-gray-800') 
+                },'svg') 
+            }}
+        </div>
+        <div class="pl-1 {{ title_text_class|default('text-gray-400 font-thin') }}">
+            {{ title }}
+        </div>
+    </div> 
+    {% endif %}
+    <div class="flex flex-col {{ content_class|default('px-4') }}">
+        <div class="flex flex-row">
+            <div class="flex flex-col w-1/2">
+                <div class="{{ field_label }}">
+                    {{ labels.first_name }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.first_name }}
+                </div>
+            </div>
+            <div class="flex flex-col {{ field_space }} w-1/2">
+                <div class="{{ field_label }}">
+                    {{ labels.last_name }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.last_name }}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col {{ row_class }}">
+            <div class="flex flex-col">
+                <div class="{{ field_label }}">
+                    {{ labels.street }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.address }}
+                </div>
+            </div>
+            {% if address.address_2 is not empty %}
+            <div>
+                {{ address.address_2 }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="flex flex-row {{ row_class }}">
+            <div class="flex flex-col">
+                <div class="{{ field_label }}">
+                    {{ labels.city }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.city }}
+                </div>
+            </div>
+            <div class="flex flex-col {{ field_space }}">
+                <div class="{{ field_label }}">
+                    {{ labels.state }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.state }}
+                </div>
+            </div>
+            <div class="flex flex-col {{ field_space }}">
+                <div class="{{ field_label }}">
+                    {{ labels.zip }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.zip_code }}
+                </div>
+            </div>          
+        </div>
+        <div class="flex flex-col {{ row_class }}"> 
+            <div class="{{ field_label }}">
+                {{ labels.country }}
+            </div>
+            <div class="{{ text_class }}">
+                {{ address.country }}
+            </div>           
+        </div>
+    </div>
+</div>

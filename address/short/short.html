@@ -1,0 +1,42 @@
+<div class="{{ class|default('p-1') }}">
+    {% if hide_title != true %}  
+    <div class="flex flex-row items-center ">
+        <div>
+            {{  component(icon|default('icons~address'),{ 
+                    size: 'h-4 w-4', 
+                    color: icon_color|default('text-gray-800') 
+                },'svg') 
+            }}
+        </div>
+        <div class="pl-1 {{ title_class|default('text-gray-400 font-thin') }}">
+            {{ title }}
+        </div>
+    </div> 
+    {% endif %}
+    <div class="flex flex-col {{ text_class|default('text-gray-800 font-medium') }}">
+        <div>
+            <span>
+                {{ address.first_name }}
+            </span>
+            <span class="px-1">
+                {{ address.last_name }}
+            </span>
+        </div>
+        <div>
+            {{ address.address }}
+        </div>
+        {% if address.address_2 is not empty %}
+        <div>
+            {{ address.address_2 }}
+        </div>
+        {% endif %}
+        <div>
+            {{ address.city }}{{ (address.state is not empty) ? ', ' : '' }}
+            {{ address.state }}
+            {{ address.zip_code }}
+        </div>
+        <div>
+            {{ address.country }}
+        </div>
+    </div>
+</div>

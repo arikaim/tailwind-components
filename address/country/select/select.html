@@ -1,0 +1,22 @@
+{% set country = createModel('Country','address') %}
+{% if selected is not empty %}
+    {% set item_selected = country.findCountry(selected) %}
+{% endif %}
+{% set items = country.get() %}
+{% set data_field = data_field|default('uuid') %}
+<select 
+    id="{{ component_id }}"
+    class="select {{ class|default('select-info select-sm') }} country-dropdown "
+    {{ rule|attr('rule') }} 
+    {{ title|attr('title') }} 
+    data-field="{{ data_field }}"
+    name="{{ name }}" 
+    value="{{ item_selected[data_field] }}">
+    {% for item in items %}      
+        <option 
+            value="{{ item[data_field] }}" 
+            selected="{{ (item_selected[data_field] == item[data_field]) ? 'selected' : '' }}">  
+            {{ item.name }}
+        </option>   
+    {% endfor %}          
+</select>

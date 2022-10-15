@@ -1,0 +1,17 @@
+{
+    "title": "Address",
+    "labels": {
+        "country": "Country",           
+        "state": "State",          
+        "city": "City",          
+        "zip": "Zip code",
+        "address": "Address",           
+        "address2": "Address 2",           
+        "phone": "Phone",            
+        "email": "Email",         
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "street": "Street",
+        "website": "Website"             
+    }
+}
