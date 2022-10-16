@@ -1,6 +1,7 @@
 {
     "labels": {
-        "type": "Type"
+        "type": "Type",
+        "required": "Required"
     },
     "fields": {
         "country": {

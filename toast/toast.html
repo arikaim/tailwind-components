@@ -1,0 +1,33 @@
+<toast 
+    id="{{ component_id }}"
+    class="flex flex-row items-center invisible toast {{ class|default('toast-end') }}
+    {{ space|default('py-4 px-2') }}
+    {{ size }}
+    {{ color|default('bg-green-400 text-gray-800') }}
+    {{ border|default('rounded shadow border border-b-2 border-solid border-green-400') }}"   
+    hide-after="{{ hide_after|default(800) }}"   
+    fade="{{ fade|default(500) }}">
+    {% if hide_icon != true %}
+    <div class="toast-icon flex items-center flex-shrink-0">
+        {{  component(icon.name|default('icons~check'),{ 
+                size: icon.size|default('w-8 h-8'), 
+                color: icon.color|default('text-white'), 
+                class: icon.class 
+            },'svg')
+        }}       
+    </div>
+    {% endif %}
+    <div class="toast-content flex-grow {{ content_class|default('px-1') }}">
+        {{ content }}
+    </div>
+    {% if hide_close != true %}
+    <div class="toast-close-button cursor-pointer {{ close.hover }} {{ close.button }}">
+        {{  component(close.name|default('icons~close'),{ 
+                size: close.size|default('w-4 h-4'), 
+                color: close.color|default('text-gray-800'), 
+                class: close.class 
+            },'svg')
+        }}
+    </div>
+    {% endif %}
+</toast>

@@ -1,8 +1,9 @@
+{% set country_code = country_code|default('US') %}
 {% set state = createModel('State','address') %}
 {% if selected is not empty %}
     {% set item_selected = state.findById(selected) %}
 {% endif %}
-{% set items = state.countryQuery(coutry_code).orderBy('country_code').get() %}
+{% set items = state.countryQuery(country_code).orderBy('country_code').get() %}
 {% set data_field = data_field|default('uuid') %}
 <div 
     id="{{ component_id }}"

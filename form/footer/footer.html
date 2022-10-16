@@ -21,14 +21,16 @@
         </div>
         {% endif %}
     </div>   
-    <div class="{{ message.class|default('h-24 mt-4') }}">       
+    <div class="{{ message.class|default('h-16') }}">
+        {% if hide_errors != true %}    
         <div         
             {{ message_error_id|attr('id') }}
-            class="errors error invisible message error-message {{ message.error|default('p-2 text-red-400 font-bold') }}">           
-        </div>         
+            class="errors error message invisible error-message {{ message.error|default('py-4 text-sm text-red-400 font-semibold') }}">
+        </div>        
+        {% endif %} 
         <div
             {{ message_success_id|attr('id') }} 
-            class="success invisible success-message {{ message.success|default('p-2 text-green-400 font-bold') }}">        
+            class="success invisible success-message {{ message.success|default('py-4 text-sm text-green-400 font-semibold') }}">        
         </div>  
     </div>   
 </div>
