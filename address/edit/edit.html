@@ -3,7 +3,7 @@
 <form 
     class="ui form {{ class|default('p-2') }}" 
     id="{{ id|default('address_form') }}">  
-    <input type="hidden" name="uuid" id="uuid" value="{{ uuid }}">  
+    <input type="hidden" name="uuid" id="uuid" value="{{ address.uuid }}">  
     <input type="hidden" name="type" id="address_type" value="{{ type|default(address.type) }}"> 
     {% for key, field in input_fields %}
         <input type="hidden" name="{{ key }}" id="{{ key }}" value="{{ field }}">  
@@ -133,7 +133,7 @@
             {{ fields.country.label }}
         </label>
         {{  component('tailwind~address.country',{ 
-                selected: address.country_id, 
+                selected: address.country_id|default(country_code), 
                 data_field: 'id',   
                 class: 'mini',                
                 name: 'country_id'
@@ -148,7 +148,8 @@
         </label>
         <div id="state_content" class="w-full">
             {{  component('tailwind~address.state',{ 
-                    selected: address.state_id, 
+                    selected: address.state_id|default(state_code), 
+                    country_code: address.country.code|default(country_code),
                     data_field: 'id',
                     name: 'state_id',
                     class: 'mini w-full' 
