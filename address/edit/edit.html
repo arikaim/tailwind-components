@@ -5,6 +5,9 @@
     id="{{ id|default('address_form') }}">  
     <input type="hidden" name="uuid" id="uuid" value="{{ uuid }}">  
     <input type="hidden" name="type" id="address_type" value="{{ type|default(address.type) }}"> 
+    {% for key, field in input_fields %}
+        <input type="hidden" name="{{ key }}" id="{{ key }}" value="{{ field }}">  
+    {% endfor %}
     {% if show_type == true %}
     <div class="my-2">
         <div class="badge">
@@ -124,6 +127,7 @@
                 value="{{ address.zip_code }}">
         </div>
     </div>
+    {% if hide_country != true %}
     <div class="my-2 px-1 form-control field">
         <label class="{{ label_class }}">
             {{ fields.country.label }}
@@ -136,6 +140,8 @@
             }) 
         }} 
     </div>   
+    {% endif %}
+    {% if hide_state != true %}
     <div class="my-2 px-1 form-control field">
         <label class="{{ label_class }}">
             {{ fields.state.label }}
@@ -150,6 +156,7 @@
             }} 
         </div>           
     </div> 
+    {% endif %}
     {% if show_website == true %}
     <div class="my-2 px-1 form-control field">
         <label class="{{ label_class }}">

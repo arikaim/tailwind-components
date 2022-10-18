@@ -18,6 +18,7 @@
     </div> 
     {% endif %}
     <div class="flex flex-col {{ content_class|default('px-4') }}">
+        {% if hide_name != true %}
         <div class="flex flex-row">
             <div class="flex flex-col w-1/2">
                 <div class="{{ field_label }}">
@@ -36,6 +37,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         <div class="flex flex-col {{ row_class }}">
             <div class="flex flex-col">
                 <div class="{{ field_label }}">
@@ -52,6 +54,7 @@
             {% endif %}
         </div>
         <div class="flex flex-row {{ row_class }}">
+            {% if address.city is not empty %}
             <div class="flex flex-col">
                 <div class="{{ field_label }}">
                     {{ labels.city }}
@@ -60,6 +63,8 @@
                     {{ address.city }}
                 </div>
             </div>
+            {% endif %}
+            {% if address.state is not empty %}
             <div class="flex flex-col {{ field_space }}">
                 <div class="{{ field_label }}">
                     {{ labels.state }}
@@ -68,6 +73,8 @@
                     {{ address.state }}
                 </div>
             </div>
+            {% endif %}
+            {% if address.zip_code is not empty %}
             <div class="flex flex-col {{ field_space }}">
                 <div class="{{ field_label }}">
                     {{ labels.zip }}
@@ -75,8 +82,10 @@
                 <div class="{{ text_class }}">
                     {{ address.zip_code }}
                 </div>
-            </div>          
+            </div>  
+            {% endif %}        
         </div>
+        {% if address.country is not empty %}
         <div class="flex flex-col {{ row_class }}"> 
             <div class="{{ field_label }}">
                 {{ labels.country }}
@@ -85,5 +94,6 @@
                 {{ address.country }}
             </div>           
         </div>
+        {% endif %}      
     </div>
 </div>
