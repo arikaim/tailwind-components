@@ -54,23 +54,23 @@
             {% endif %}
         </div>
         <div class="flex flex-row {{ row_class }}">
-            {% if address.city is not empty %}
+            {% if address.city.id is not empty or address.custom_city is not empty %}
             <div class="flex flex-col">
                 <div class="{{ field_label }}">
                     {{ labels.city }}
                 </div>
                 <div class="{{ text_class }}">
-                    {{ address.city }}
+                    {{ address.city.id|default(custom_city) }}
                 </div>
             </div>
             {% endif %}
-            {% if address.state is not empty %}
+            {% if address.state.id is not empty %}
             <div class="flex flex-col {{ field_space }}">
                 <div class="{{ field_label }}">
                     {{ labels.state }}
                 </div>
                 <div class="{{ text_class }}">
-                    {{ address.state }}
+                    {{ address.state.title }}
                 </div>
             </div>
             {% endif %}
@@ -85,13 +85,13 @@
             </div>  
             {% endif %}        
         </div>
-        {% if address.country is not empty %}
+        {% if address.country.id is not empty %}
         <div class="flex flex-col {{ row_class }}"> 
             <div class="{{ field_label }}">
                 {{ labels.country }}
             </div>
             <div class="{{ text_class }}">
-                {{ address.country }}
+                {{ address.country.name }}
             </div>           
         </div>
         {% endif %}      
