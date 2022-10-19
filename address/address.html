@@ -38,6 +38,28 @@
             </div>
         </div>
         {% endif %}
+        <div class="flex flex-row">
+            {% if address.phone is not empty %}
+            <div class="flex flex-col w-1/2">
+                <div class="{{ field_label }}">
+                    {{ labels.phone }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.phone }}
+                </div>
+            </div>
+            {% endif %}
+            {% if address.email is not empty %}
+            <div class="flex flex-col {{ field_space }} w-1/2">
+                <div class="{{ field_label }}">
+                    {{ labels.email }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.email }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
         <div class="flex flex-col {{ row_class }}">
             <div class="flex flex-col">
                 <div class="{{ field_label }}">
