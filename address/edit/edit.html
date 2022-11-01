@@ -1,4 +1,4 @@
-{% set field_class = field_class|default('input-info input-sm placeholder-gray-400') %}
+{% set field_class = field_class|default('input-info input-md placeholder-gray-400') %}
 {% set label_class = label_class|default('font-semibold') %}
 <form 
     class="ui form {{ class|default('p-2') }}" 
@@ -44,7 +44,7 @@
         </div>
     </div>
     {% endif %}
-    <div class="my-2 flex flex-row items-center">
+    <div class="mt-2 flex flex-row items-start">
         {% if hide_email != true %}
         <div class="px-1 form-control field w-1/2">
             <label class="{{ label_class }}">
@@ -103,7 +103,7 @@
             {{ fields.address2.placeholder|attr('placeholder') }} 
             value="{{ address.address_2 }}">  
     </div>   
-    <div class="my-2 flex flex-row items-center">
+    <div class="my-2 flex flex-row items-start">
         <div class="px-1 form-control field w-1/2">
             <label class="{{ label_class }}">
                 {{ fields.city.label }}
@@ -127,37 +127,39 @@
                 value="{{ address.zip_code }}">
         </div>
     </div>
-    {% if hide_country != true %}
-    <div class="my-2 px-1 form-control field">
-        <label class="{{ label_class }}">
-            {{ fields.country.label }}
-        </label>
-        {{  component('tailwind~address.country',{ 
-                selected: address.country_id|default(country_code), 
-                data_field: 'id',   
-                class: 'mini',                
-                name: 'country_id'
-            }) 
-        }} 
-    </div>   
-    {% endif %}
-    {% if hide_state != true %}
-    <div class="my-2 px-1 form-control field">
-        <label class="{{ label_class }}">
-            {{ fields.state.label }}
-        </label>
-        <div id="state_content" class="w-full">
-            {{  component('tailwind~address.state',{ 
-                    selected: address.state_id|default(state_code), 
-                    country_code: address.country.code|default(country_code),
-                    data_field: 'id',
-                    name: 'state_id',
-                    class: 'mini w-full' 
+    <div class="my-2 flex flex-row items-start">
+        {% if hide_country != true %}
+        <div class="px-1 form-control field w-1/2">
+            <label class="{{ label_class }}">
+                {{ fields.country.label }}
+            </label>
+            {{  component('tailwind~address.country',{ 
+                    selected: address.country_id|default(country_code), 
+                    data_field: 'id',   
+                    class: 'mini',                
+                    name: 'country_id'
                 }) 
             }} 
-        </div>           
-    </div> 
-    {% endif %}
+        </div>   
+        {% endif %}
+        {% if hide_state != true %}
+        <div class="px-1 form-control field w-1/2">
+            <label class="{{ label_class }}">
+                {{ fields.state.label }}
+            </label>
+            <div id="state_content" class="w-full">
+                {{  component('tailwind~address.state',{ 
+                        selected: address.state_id|default(state_code), 
+                        country_code: address.country.code|default(country_code),
+                        data_field: 'id',
+                        name: 'state_id',
+                        class: 'mini w-full' 
+                    }) 
+                }} 
+            </div>           
+        </div> 
+        {% endif %}
+    </div>
     {% if show_website == true %}
     <div class="my-2 px-1 form-control field">
         <label class="{{ label_class }}">
@@ -173,7 +175,9 @@
             value="{{ address.website }}">
     </div>
     {% endif %}
+    {% if hide_submit != true %}
     <div class="my-2 px-1">
         {{ component('tailwind~form.footer',{ button: submit_button }) }}   
     </div>    
+    {% endif %}
 </form>

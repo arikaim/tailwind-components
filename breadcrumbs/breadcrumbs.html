@@ -1,0 +1,16 @@
+<div
+    id="{{ component_id }}"
+    class="breadcrumbs {{ class }}">
+    <ul class="breadcrumbs-items {{ items_class|default('p-1') }}">
+        {% for item in items %}
+        <li>
+            <a 
+                class="breadcrumbs-item {{ item.class }}"
+                href="{{ (item.url is empty) ? '#' : url(item.url) }}"
+                component="{{ item.component }}">
+                {{ item.title }}
+            </a>
+        </li> 
+        {% endfor %}
+    </ul>
+</div>

@@ -13,7 +13,10 @@ arikaim.component.onLoaded(function(component) {
         $(component.getElement()).fadeOut(fade);       
     };
 
-    component.show = function() {
+    component.show = function(message) {
+        if (isEmpty(message) == false) {
+            component.setContent(message);
+        }
         var fade = component.get('fade');
         fade = parseInt((isEmpty(fade) == true) ? 0 : fade);
 
@@ -31,7 +34,7 @@ arikaim.component.onLoaded(function(component) {
 
     component.setContent = function(text) {      
         var toastContent = $(component.getElement()).find('.toast-content');
-        $(toastContent).find('.toast-description').html(text)
+        $(toastContent).html(text)
     };
 
     component.init = function() {
