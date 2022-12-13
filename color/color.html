@@ -22,7 +22,8 @@
             value="{{ selected }}">                            
     </selected>    
     <menu 
-        class="z-50 mt-12 top-0 absolute left-0 hidden
+        class="z-50 mt-12 absolute hidden 
+        {{ position|default('top-0 left-0') }} 
         {{ menu_color|default('bg-white') }}
         {{ menu_border|default('rounded-xl border border-gray-200 border-solid shadow-md') }}
         {{ menu_class }}">     

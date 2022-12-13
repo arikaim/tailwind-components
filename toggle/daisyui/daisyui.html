@@ -9,6 +9,7 @@
         id="{{ component_id }}"  
         value="{{ (checked == true) ? 1 : 0 }}"
         type="checkbox" 
+        name="{{ field_name|default('toggle') }}" 
         class="cursor-pointer toggle {{ toggle_class }}" 
         {{ (checked == true) ? 'checked' : '' }}
         {{ (disabled == true) ? 'disabled' : '' }} />
