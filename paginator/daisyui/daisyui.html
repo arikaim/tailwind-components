@@ -10,6 +10,7 @@
     rows-selector="{{ rows_selector }}"
     component="{{ component }}"
     namespace="{{ namespace }}"
+    {{ params|attr() }}
     last-page="{{ paginator.last_page }}"
     from-page="{{ from_page }}" 
     to-page="{{ to_page }}" 
