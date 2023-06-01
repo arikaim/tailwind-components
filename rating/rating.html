@@ -1,0 +1,27 @@
+{% set rating = service('rating').findRating(object_id,type) %}
+<div
+    class="flex flex-rows items-center"
+    id="{{ component_id }}"
+    object-id="{{ object_id }}"
+    type="{{ type }}"
+    saved="false"
+    rating="{{ rating.average }}">
+    <div class="tooltip flex flex-rows items-center {{ class }}" data-tip="{{ title }}">
+        <div>
+            {{ component('icons~star',{ color: 'text-orange-500 fill-orange-500', size: 'h-7 w-7' },'svg') }}
+        </div>
+        <div class="font-bold text-lg pl-2">
+            {{ rating.average|numberFormat(1) }}
+        </div>
+    </div>
+    {% if service('rating').isAllowed(object_id,type,service('access').getId(),client_ip) == true %}
+        <div class="rating rating-panel {{ panel_class|default('pl-1') }}">
+            <input type="radio" name="rating_{{ object_id }}" class="rating-hidden" value="" checked />  
+            <input title="1" type="radio" name="rating_{{ object_id }}" class="rating-button mask mask-star-2 bg-orange-400" value="1" />
+            <input title="2" type="radio" name="rating_{{ object_id }}" class="rating-button mask mask-star-2 bg-orange-400" value="2" />
+            <input title="3" type="radio" name="rating_{{ object_id }}" class="rating-button mask mask-star-2 bg-orange-400" value="3" />
+            <input title="4" type="radio" name="rating_{{ object_id }}" class="rating-button mask mask-star-2 bg-orange-400" value="4" />
+            <input title="5" type="radio" name="rating_{{ object_id }}" class="rating-button mask mask-star-2 bg-orange-400" value="5" />
+        </div>
+    {% endif %}
+</div>

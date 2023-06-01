@@ -1,0 +1,7 @@
+{
+    "include": {
+        "js": [
+            "rating::api"
+        ]
+    }
+}
