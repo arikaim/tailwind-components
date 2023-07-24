@@ -4,7 +4,7 @@
 {% set row_class = row_class|default('py-2') %}
 <div class="{{ class|default('bg-stone-100 inline-block rounded-lg') }}">
     {% if hide_title != true %}  
-    <div class="flex flex-row items-center {{ title_class|default('py-2 px-4') }}">
+    <div class="flex flex-row items-center {{ title_class|default('px-4') }}">
         <div>
             {{  component(icon|default('icons~address'),{ 
                     size: 'h-4 w-4', 
@@ -38,29 +38,8 @@
             </div>
         </div>
         {% endif %}
-        <div class="flex flex-row">
-            {% if address.phone is not empty %}
-            <div class="flex flex-col w-1/2">
-                <div class="{{ field_label }}">
-                    {{ labels.phone }}
-                </div>
-                <div class="{{ text_class }}">
-                    {{ address.phone }}
-                </div>
-            </div>
-            {% endif %}
-            {% if address.email is not empty %}
-            <div class="flex flex-col {{ field_space }} w-1/2">
-                <div class="{{ field_label }}">
-                    {{ labels.email }}
-                </div>
-                <div class="{{ text_class }}">
-                    {{ address.email }}
-                </div>
-            </div>
-            {% endif %}
-        </div>
         <div class="flex flex-col {{ row_class }}">
+            {% if address.address is not empty %}
             <div class="flex flex-col">
                 <div class="{{ field_label }}">
                     {{ labels.street }}
@@ -69,6 +48,7 @@
                     {{ address.address }}
                 </div>
             </div>
+            {% endif %}
             {% if address.address_2 is not empty %}
             <div>
                 {{ address.address_2 }}
@@ -81,18 +61,18 @@
                 <div class="{{ field_label }}">
                     {{ labels.city }}
                 </div>
-                <div class="{{ text_class }}">
-                    {{ address.city.id|default(custom_city) }}
+                <div class="{{ text_class }}">                   
+                    {{ address.city.id|default(address.custom_city) }}
                 </div>
             </div>
-            {% endif %}
+            {% endif %}    
             {% if address.state.id is not empty %}
             <div class="flex flex-col {{ field_space }}">
                 <div class="{{ field_label }}">
                     {{ labels.state }}
                 </div>
                 <div class="{{ text_class }}">
-                    {{ address.state.title }}
+                    {{ address.state.code }}
                 </div>
             </div>
             {% endif %}
@@ -116,6 +96,28 @@
                 {{ address.country.name }}
             </div>           
         </div>
-        {% endif %}      
+        {% endif %}    
+        <div class="flex flex-row">
+            {% if address.phone is not empty %}
+            <div class="flex flex-col w-1/2">
+                <div class="{{ field_label }}">
+                    {{ labels.phone }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.phone }}
+                </div>
+            </div>
+            {% endif %}
+            {% if address.email is not empty %}
+            <div class="flex flex-col {{ field_space }} w-1/2">
+                <div class="{{ field_label }}">
+                    {{ labels.email }}
+                </div>
+                <div class="{{ text_class }}">
+                    {{ address.email }}
+                </div>
+            </div>
+            {% endif %}
+        </div>  
     </div>
 </div>
