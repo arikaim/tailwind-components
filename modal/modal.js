@@ -3,7 +3,7 @@
 arikaim.component.onLoaded(function(component) { 
 
     component.close = function() {             
-        $(this.getElement()).fadeOut(500);
+        $(this.getElement()).removeClass('modal-open');  
     };
 
     component.setContent = function(content) {
@@ -14,8 +14,8 @@ arikaim.component.onLoaded(function(component) {
         $(this.getElement()).find('.modal-title').html(title);
     };
 
-    component.open = function() {     
-        $(this.getElement()).removeClass('hidden').fadeIn(500);  
+    component.open = function() {          
+        $(this.getElement()).addClass('modal-open');  
     };
 
     component.init = function() {        

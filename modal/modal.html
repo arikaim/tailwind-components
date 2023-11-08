@@ -1,25 +1,25 @@
 <modal 
     id="{{ component_id }}"     
-    class="modal fixed hidden top-0 left-0 w-screen h-screen z-100  
+    class="modal fixed  top-0 left-0 w-screen h-screen z-100  
     {{ color|default('bg-gray-700 bg-opacity-50') }}">
     <div 
-        class="modal-container absolute inline-block overflow-y-auto bg-opacity-100 z-101
+        class="modal-box
         {{ position|default('left-0 top-1/2 right-0 m-auto') }}
         {{ border|default('border border-gray-500 border-solid') }}
         {{ color|default('bg-white rounded-lg shadow-lg') }}
-        {{ size|default('w-2/4') }}">
-        <header class="bg-white modal-header flex justify-between items-center {{ space|default('py-4 px-6') }}">				       
-            <h4 class="modal-title {{ title_class|default('text-2xl font-bold') }}">
-                {{ title }}
-            </h4>
-            {{  component(close_icon|default('icons~close'),{ 
-                    class: 'cursor-pointer modal-close transition-color duration-500 ease-in-out', 
+        {{ size|default('w-2/4') }}">  		       
+        <div class="flex flex-rows items-center">
+            <h4 class="flex-grow modal-title {{ title_class|default('text-2xl font-bold') }}">           
+                {{ title }}           
+            </h4> 
+            {{  component('icons~close',{ 
                     size: 'h-6 w-6', 
-                    color: 'text-gray-800 hover:text-red-500' 
+                    class: 'inline-block modal-close cursor-pointer transition-color duration-500 ease-in-out',
+                    color: 'text-gray-800' 
                 },'svg') 
-            }}               
-        </header>
-        <content class="modal-content {{ space|default('py-4 px-6') }}">
+            }}
+        </div>	              
+        <content {{ content_id|attr('id') }}class="modal-content {{ space|default('p-2') }}">
             {{ content }}
         </content>
         <footer class="modal-footer flex flex-row 

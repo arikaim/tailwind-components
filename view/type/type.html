@@ -1,0 +1,33 @@
+{% set selected = selected|default(getViewType(namespace)) %}
+{% set size = size|default('h-6 w-6') %}
+{% set color = color|default('text-gray-800 dark:text-gray-100') %}
+{%  set icons = {
+        table: 'icons~list',
+        grid: 'icons~template'
+    }
+%}
+<div class="tooltip" data-tip="{{ tooltip }}">
+    <label    
+        class="swap swap-rotate {{ class }}">
+        <input 
+            id="{{ component_id|default('view-type') }}"          
+            namespace="{{ namespace }}"
+            view-type="{{ items[selected].value }}" 
+            {{ (selected == 'table') ? 'checked' : '' }}
+            type="checkbox" />
+
+        {{  component(icons.table,{
+                color: color, 
+                size: size, 
+                class: 'swap-on'
+            },'svg') 
+        }}    
+
+        {{  component(icons.grid,{
+                color: color, 
+                size: size, 
+                class: 'swap-off'
+            },'svg') 
+        }}       
+    </label>
+</div>
