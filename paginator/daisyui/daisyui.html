@@ -29,15 +29,17 @@
         page="prev">
         {{ component('icons~chevron.left',{ size: icon_size },'svg') }}
     </btn> 
-    {% for index in from_page..to_page %}
-        <btn 
-            class="btn page-link page-{{ index }}
-            {{ button_class|default('btn-sm') }}            
-            {{ (paginator.current_page == index) ? 'btn-active' : '' }}" 
-            page="{{ index }}">
-            {{ index }}  
-        </btn>
-    {% endfor %}    
+    {% if paginator.last_page > 1 %}
+        {% for index in from_page..to_page %}
+            <btn 
+                class="btn page-link page-{{ index }}
+                {{ button_class|default('btn-sm') }}            
+                {{ (paginator.current_page == index) ? 'btn-active' : '' }}" 
+                page="{{ index }}">
+                {{ index }}  
+            </btn>
+        {% endfor %} 
+    {% endif %}   
     <btn class="btn page-link next-page page-link 
         {{ button_class|default('btn-sm') }}
         {{ (paginator.current_page == paginator.last_page) ? 'hidden' : '' }}"
