@@ -1,0 +1,32 @@
+{% set data_field = data_field|default('value') %}
+{% set title_field = title_field|default('title') %}
+<div
+    id="{{ component_id }}"
+    selected="{{ selected }}"
+    class="relative {{ class|default(styles.class) }}">
+    <button 
+        class="dropdown-toggle flex flex-row items-center {{ toggle_class|default(styles.toggle) }}" 
+        type="button">
+        <div 
+            class="{{ title_class|default(styles.title) }}">
+            {{ title|default(labels.select) }}
+        </div>
+        {{  component('icons~chevron.down',{ 
+                size: 'w-4 h-4',
+                class: 'button-icon ml-2 -mr-1 transition duration-300 transition-transform' 
+            },'svg') 
+        }}
+    </button>
+    <div 
+        role="menu" 
+        aria-orientation="vertical" 
+        class="dropdown-menu z-10 hidden {{ menu_class|default(styles.menu) }} ">
+        {% for item in items %}
+            <div
+                value="{{ item[data_field] }}"
+                class="dropdown-item {{ item_class|default(styles.item) }} ">
+                {{ item[title_field] }}
+            </div>
+        {% endfor %}           
+    </div>
+</div>
