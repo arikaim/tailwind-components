@@ -1,0 +1,51 @@
+{% set paginator = getPaginator(namespace) %}
+{% set page_links = page_links|default(4) %}
+{% set from_page = paginator.current_page - page_links %}
+{% set from_page = (from_page < 1) ? 1 : from_page  %}
+{% set to_page = (from_page + page_links) %}
+{% set to_page = (to_page > paginator.last_page) ? paginator.last_page : to_page %}
+{% set icon_size = icon_size|default('h-full w-full') %}
+{% set button_class = button_class|default('hover:cursor-pointer rounded-lg flex items-center justify-center p-1 px-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white') %}
+<div 
+    id="{{ component_id }}"
+    rows_selector="{{ rows_selector }}"
+    component="{{ component }}"
+    namespace="{{ namespace }}"
+    {{ params|attr() }}
+    last-page="{{ paginator.last_page }}"
+    from-page="{{ from_page }}" 
+    to-page="{{ to_page }}" 
+    current-page="{{ paginator.current_page }}"
+    class="flex flex-row items-center {{ class|default('h-8 text-sm') }}">
+    <button 
+        class="page-link first-page {{ button_class }} rounded-l-full
+        {{ (paginator.current_page == 1) ? 'hidden' : '' }}"
+        page="1">
+        {{ component('icons~chevron.double.left',{ size: icon_size, width: '2' },'svg') }}
+    </button>
+    <button class="prev-page page-link {{ button_class }} 
+        {{ (paginator.current_page == 1) ? 'hidden' : '' }}" 
+        page="prev">
+        {{ component('icons~chevron.left',{ size: icon_size, width: '2' },'svg') }}
+    </button> 
+    {% if paginator.last_page > 1 %}
+        {% for index in from_page..to_page %}
+            <button class="page-link page-{{ index }} {{ button_class }}             
+                {{ (paginator.current_page == index) ? 'paginator-active' : '' }}" 
+                page="{{ index }}">
+                {{ index }}  
+            </button>
+        {% endfor %} 
+    {% endif %}   
+    <button class="page-link next-page page-link {{ button_class }}              
+        {{ (paginator.current_page == paginator.last_page) ? 'hidden' : '' }}"
+        page="next">
+        {{ component('icons~chevron.right',{ size: icon_size, width: '2' },'svg') }}
+    </button>
+    <button 
+        class="page-link last-page {{ button_class }} rounded-r-full
+        {{ (paginator.current_page == paginator.last_page) ? 'hidden' : '' }}"       
+        page="{{ paginator.last_page }}">
+        {{ component('icons~chevron.double.right',{ size: icon_size, width: '2' },'svg') }}
+    </button>   
+</div>

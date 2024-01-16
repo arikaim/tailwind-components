@@ -30,7 +30,6 @@ arikaim.component.onLoaded(function(component) {
     component.init = function() {
         var buttons = $(component.getElement()).children('tabItem');
         buttons.on('click',function() {
-            console.log(this);
             component.toggle(this);
         });  
     };

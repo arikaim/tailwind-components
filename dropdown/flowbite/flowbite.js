@@ -38,9 +38,7 @@ arikaim.component.onLoaded(function(component) {
         });
 
         arikaim.ui.button($(component.getElement()).find('.dropdown-item'),function(btn) {
-            console.log('select');
             component.select(btn);
-            console.log( component.get('selected') );
             dropdown.toggle();
         });     
     };
