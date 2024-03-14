@@ -9,9 +9,9 @@
     hideOnBlur="{{ hide_on_blur|default('true') }}"
     class="color-picker relative inline-flex flex-col items-start {{ class }}">
     <selected 
-        class="inline-block h-10 w-10 color-pick-button cursor-pointer transition-colors duration-700  
+        class="inline-block color-pick-button cursor-pointer transition-colors duration-700             
         {{ selcted_bg }} 
-        {{ selected_class }}
+        {{ selected_class|default('h-8 w-8') }}
         {{ selected_hover|default('hover:border-green-500 hover:shadow-2xl') }}
         {{ selected_border|default('rounded-xl border-2 border-gray-300 border-solid') }}">
         <input 

@@ -582,5 +582,9 @@
         "from": "from",
         "to": "to",
         "via": "via"
+    },
+    "empty": {
+        "title": "Remove Clolor",
+        "bg": "bg-stone-100"
     }
 }
