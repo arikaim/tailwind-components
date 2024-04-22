@@ -1,6 +1,7 @@
 'use strict';
 
 arikaim.component.onLoaded(function(component) {
+
     arikaim.ui.button('.clipboard-copy',function(element) {
         var type = $(element).attr('content-type');
         var selector = $(element).attr('content-selector');
@@ -12,7 +13,18 @@ arikaim.component.onLoaded(function(component) {
     });
 
     function clipboardCopy(selector, type, escape, options, focusElement) {
-        var value = (type == 'element') ? $(selector).html() : $(selector).val();
+        var value;
+        
+        if (type == 'text') {
+            value = selector
+        } 
+        if (type == 'element') {
+            value = $(selector).html();
+        } 
+        if (type == 'input') {
+            value = $(selector).val();
+        } 
+           
         focusElement = (isEmpty(focusElement) == true) ? selector : focusElement;
         if (options == 'trim') {
             value = value.trim();
@@ -20,28 +32,29 @@ arikaim.component.onLoaded(function(component) {
         
         if (isObject(navigator.clipboard) == true) {
             navigator.clipboard.writeText(value).then(function() {
-                $(focusElement).show();  
-                $(focusElement).focus();         
-                $(focusElement)[0].scrollIntoView(false);  
+                if (type !== 'text') {
+                    $(focusElement).show();  
+                    $(focusElement).focus();         
+                    $(focusElement)[0].scrollIntoView(false);  
+                }
                 return true;
             });
         } else {
-            var $input = $('<input>');
+            var $input = $('<textarea>'); 
             $('body').append($input);
+          
             if (escape == true && isEmpty(value) == false) {
-                var doc = new DOMParser().parseFromString(value,'text/html');
-                value = doc.documentElement.textContent;
+                if (type !== 'text') {
+                    var doc = new DOMParser().parseFromString(value,'text/html');
+                    value = doc.documentElement.textContent;
+                } 
             }
-           
-            $input.val(value);
+            
+            $input.html(value);
             $input.focus();
             $input.select();
             document.execCommand('copy');
             $input.remove();   
         }
-           
-        $(focusElement).show();  
-        $(focusElement).focus();         
-        $(focusElement)[0].scrollIntoView(false);               
     }
 });
