@@ -2,7 +2,7 @@
     "title": "Html components",
     "package-type": "components",
     "name": "tailwind",
-    "version": "1.4.18",
+    "version": "1.4.19",
     "description": "Arikaim CMS html components library created with Tailwind CSS.",
     "repository": "https://github.com/arikaim/tailwind-components.git",
     "require": {
