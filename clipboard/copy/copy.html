@@ -4,6 +4,7 @@
 {% set hint = hint|default(labels.hint) %}
 <a 
     class="block normal-case cursor-pointer link clipboard-copy tooltip {{ class }}" 
+    href="{{ href|default(selector) }}"
     content-selector="{{ selector }}" 
     content-type="{{ type }}" 
     content-options="{{ options }}" 
