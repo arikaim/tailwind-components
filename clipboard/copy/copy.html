@@ -10,6 +10,7 @@
     content-options="{{ options }}" 
     focus-element="{{ focus_element }}"
     data-tip="{{ hint }}"
+    aria-label="{{ hint }}"
     escape-content="{{ escape }}">
     {% if hide_icon != true %}
         {{ component('icons~clipboard.copy',{ 
