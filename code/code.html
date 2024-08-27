@@ -1,7 +1,7 @@
 {% set language = language|default('html') %}
 {% set trim_space = (trim_space is null) ? true : trim_space %}
 <div 
-    class="flex flex-row items-center 
+    class="{{ flex_class|default('flex flex-row items-center') }} 
     {{ color|default('bg-gray-800') }}
     {{ class|default('w-full p-1 rounded-lg overflow-x-auto') }}">   
     <div class="flex-grow">

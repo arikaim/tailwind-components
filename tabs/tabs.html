@@ -1,30 +1,36 @@
-{% set active_color = active_color|default('bg-sky-600 transition-colors duration-700 text-white') %}
+{% set selected = selected|default(0) %}
 <tabs
     id="{{ component_id }}"
-    selected="{{ selected|default(1) }}"
-    active-color="{{ active_color }}"
+    selected="{{ selected }}"
+    active-color="{{ active_color|default('bg-sky-600 transition-colors duration-700 text-white') }}"
     tab-content-id="{{ tab_content_id|default('tab_content') }}"
     class="inline-block
     {{ color }} 
     {{ border|default('border-b border-solid border-stone-500') }}
     {{ class }}">
     {% for tab in tabs %}
-    <tabItem 
-        index="{{ loop.index }}"
-        value="{{ tab.value|default(loop.index) }}"
-        {{ tab.component|attr('component') }}    
-        {{ tab.params|attr('params') }}    
-        class="inline-flex cursor-pointer select-none tab-button
-        {{ (tab.selected == true) ? active_color : '' }} 
-        {{ tab_border|default('rounded-t-lg border border-solid border-stone-500') }} 
-        {{ tab_space|default('py-1 px-4') }}
-        {{ button_hover|default('hover:bg-sky-400 transition duration-1000 ease-in-out') }}
-        {{ tab_text|default('text-center') }}">
-        {{ tab.label }}
-    </tabItem>
+        {% if tab.selected == true %} 
+            {% set selected = (loop.index -1) %}
+        {% endif %}
+        <tabItem 
+            index="{{ loop.index }}"
+            value="{{ tab.value|default(loop.index) }}"
+            {{ tab.component|attr('component') }}    
+            {{ tab.params|attr }}    
+            class="inline-flex cursor-pointer select-none tab-button
+            {{ (tab.selected == true) ? active_color : '' }} 
+            {{ tab_border|default('rounded-t-lg border border-solid border-stone-500') }} 
+            {{ tab_space|default('py-1 px-4') }}
+            {{ button_hover|default('hover:bg-sky-400 transition duration-1000 ease-in-out') }}
+            {{ tab_text|default('text-center') }}">
+            {{ tab.label }}
+        </tabItem>
     {% endfor %}
 </tabs>
 <div 
     class="tab-content {{ tab_content|default('p-1') }}"
     id="{{ tab_content_id|default('tab_content') }}">
+    {% if selected is not empty %}
+        {{ component(tabs[selected].component,tabs[selected].params) }}
+    {% endif %}
 </div>
