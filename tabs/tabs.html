@@ -2,11 +2,11 @@
 <tabs
     id="{{ component_id }}"
     selected="{{ selected }}"
-    active-color="{{ active_color|default('bg-sky-600 transition-colors duration-700 text-white') }}"
+    active-color="{{ active_color|default('bg-blue-400 transition-colors duration-700 text-white') }}"
     tab-content-id="{{ tab_content_id|default('tab_content') }}"
     class="inline-block
     {{ color }} 
-    {{ border|default('border-b border-solid border-stone-500') }}
+    {{ border|default('border-b border-solid border-gray-400') }}
     {{ class }}">
     {% for tab in tabs %}
         {% if tab.selected == true %} 
@@ -28,7 +28,7 @@
     {% endfor %}
 </tabs>
 <div 
-    class="tab-content {{ tab_content|default('p-1') }}"
+    class="tabs-content {{ tab_content|default('p-1') }}"
     id="{{ tab_content_id|default('tab_content') }}">
     {% if selected is not empty %}
         {{ component(tabs[selected].component,tabs[selected].params) }}
