@@ -30,6 +30,13 @@ arikaim.component.onLoaded(function(component) {
             value = value.trim();
         }
         
+        if (escape == true && isEmpty(value) == false) {
+            if (type !== 'text') {
+                var doc = new DOMParser().parseFromString(value,'text/html');
+                value = doc.documentElement.textContent;
+            } 
+        }
+        
         if (isObject(navigator.clipboard) == true) {
             navigator.clipboard.writeText(value).then(function() {
                 if (type !== 'text') {
@@ -42,14 +49,7 @@ arikaim.component.onLoaded(function(component) {
         } else {
             var $input = $('<textarea>'); 
             $('body').append($input);
-          
-            if (escape == true && isEmpty(value) == false) {
-                if (type !== 'text') {
-                    var doc = new DOMParser().parseFromString(value,'text/html');
-                    value = doc.documentElement.textContent;
-                } 
-            }
-            
+           
             $input.html(value);
             $input.focus();
             $input.select();
