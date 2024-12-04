@@ -6,12 +6,10 @@
     {{ class|default('w-full p-1 rounded-lg overflow-x-auto') }}">   
     <div class="flex-grow">
         {% if trim_space == true %}
-            {% apply spaceless %}
             <pre><code 
                 id="{{ component_id }}"
                 language="{{ language }}"
                 class="{{ code_class }} {{ language }}">{% autoescape false %}{{ content|escape }}{% endautoescape %}</code></pre>
-            {% endapply %}
         {% else %}
             <pre><code 
                 id="{{ component_id }}"
